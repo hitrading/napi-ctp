@@ -1,6 +1,6 @@
 {
   "variables": {
-    "tradeapi_version": "6.6.7"
+    "tradeapi_version": "6.7.0"
   },
   "targets": [
     {

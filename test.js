@@ -48,12 +48,13 @@ md
 })
 .on('rsp-user-login', (...args) => {
   console.log('md rsp-user-login', ...args);
-  // const n = md.subscribeMarketData(['au2310', 'ag2308']);
-  // console.log('subscribeMarketData', n);
+  const n = md.subscribeMarketData(['au2310', 'ag2308']);
+  console.log('subscribeMarketData', n);
 })
 .on('rtn-depth-market-data', (...args) => {
   console.log('md rtn-depth-market-data', ...args);
 });
+
 
 td
 .on('front-connected', (...args) => {
@@ -81,7 +82,6 @@ td
 })
 .on('rsp-user-login', (...args) => {
   console.log('td rsp-user-login', ...args);
-  
 });
 
 
