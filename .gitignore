@@ -7,3 +7,5 @@ prebuilds/
 package-lock.json
 types.js
 types.d.ts
+enum.js
+enum.d.ts
