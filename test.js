@@ -12,15 +12,15 @@
 const ctp = require(".");
 const fs = require("node:fs");
 
-if (!fs.existsSync("./flow/")) {
-  fs.mkdirSync("./flow/", { recursive: true });
+if (!fs.existsSync("./flow/369863")) {
+  fs.mkdirSync("./flow/369863", { recursive: true });
 }
-const td = ctp.createTrader("./flow/", "tcp://180.166.103.21:55205");
+const td = ctp.createTrader("./flow/369863/", "tcp://180.166.103.21:55205");
 
-if (!fs.existsSync("./flowMd/")) {
-  fs.mkdirSync("./flowMd/", { recursive: true });
+if (!fs.existsSync("./flowMd/369863")) {
+  fs.mkdirSync("./flowMd/369863", { recursive: true });
 }
-const md = ctp.createMarketData("./flowMd/", "tcp://180.166.103.21:55213");
+const md = ctp.createMarketData("./flowMd/369863/", "tcp://180.166.103.21:55213");
 
 console.log(td.getApiVersion());
 console.log(md.getApiVersion());
