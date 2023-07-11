@@ -10,4 +10,6 @@
  */
 
 const binding = require("node-gyp-build")(__dirname);
-module.exports = binding;
+const constants = require("./enum");
+
+module.exports = Object.assign(binding, constants);

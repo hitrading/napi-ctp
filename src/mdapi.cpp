@@ -38,6 +38,17 @@ static napi_value getApiVersion(napi_env env, napi_callback_info info) {
   return version;
 }
 
+static napi_value getTradingDay(napi_env env, napi_callback_info info) {
+  napi_value jsthis, tradingDay;
+  MarketData *marketData;
+
+  CHECK(napi_get_cb_info(env, info, nullptr, nullptr, &jsthis, nullptr));
+  CHECK(napi_unwrap(env, jsthis, (void **)&marketData));
+  CHECK(napi_create_string_utf8(env, marketData->api->GetTradingDay(), NAPI_AUTO_LENGTH, &tradingDay));
+
+  return tradingDay;
+}
+
 static napi_value callInstrumentIdsFunc(napi_env env, napi_callback_info info, const std::function<int(MarketData*, char**, int)> &func) {
   size_t argc = 1, size;
   uint32_t length;
@@ -167,11 +178,11 @@ static napi_value reqUserLogout(napi_env env, napi_callback_info info) {
   });
 }
 
-static bool processMessage(MarketData *marketData, const Message &message) {
-  const char *eventName = MdSpi::eventName(message.event);
+static bool processMessage(MarketData *marketData, const Message *message) {
+  const char *eventName = MdSpi::eventName(message->event);
 
   if (!eventName) {
-    fprintf(stderr, "<Market Data> Unknown message event %d\n", message.event);
+    fprintf(stderr, "<Market Data> Unknown message event %d\n", message->event);
     return true;
   }
 
@@ -179,15 +190,15 @@ static bool processMessage(MarketData *marketData, const Message &message) {
 
   if (iter != marketData->tsfns.end()) {
     napi_threadsafe_function tsfn = iter->second;
-    CHECK(napi_call_threadsafe_function(tsfn, (void *)&message, napi_tsfn_blocking));
+    CHECK(napi_call_threadsafe_function(tsfn, (void *)message, napi_tsfn_blocking));
   }
 
-  return EM_QUIT != message.event;
+  return EM_QUIT != message->event;
 }
 
 static void processThread(void *data) {
   MarketData *marketData = (MarketData *)data;
-  Message message;
+  Message *message;
   bool isRunning = true;
 
   while (isRunning) {
@@ -195,18 +206,36 @@ static void processThread(void *data) {
       continue;
 
     isRunning = processMessage(marketData, message);
-    marketData->spi->done(message);
   }
 }
 
 static void callJs(napi_env env, napi_value js_cb, void *context, void *data) {
-  // MarketData *marketData = (MarketData *)context;
+  MarketData *marketData = (MarketData *)context;
   Message *message = (Message *)data;
+  int event = message->event;
   napi_value undefined, argv;
 
   CHECK(napi_get_undefined(env, &undefined));
   CHECK(getMarketDataMessageValue(env, message, &argv));
   CHECK(napi_call_function(env, undefined, js_cb, 1, &argv, nullptr));
+
+  marketData->spi->done(message);
+
+  if (EM_QUIT == event) {
+    for (auto it = marketData->tsfns.begin(); it != marketData->tsfns.end(); ++it)
+      napi_unref_threadsafe_function(env, it->second);
+
+    marketData->tsfns.clear();
+    napi_delete_reference(marketData->env, marketData->wrapper);
+
+    if (marketData->api)
+      marketData->api->Release();
+
+    if (marketData->spi)
+      delete marketData->spi;
+
+    delete marketData;
+  }
 }
 
 static napi_value on(napi_env env, napi_callback_info info) {
@@ -249,20 +278,6 @@ static void marketDataDestructor(napi_env env, void *data, void *hint) {
     marketData->spi->quit();
     uv_thread_join(&marketData->thread);
   }
-
-  for (auto it = marketData->tsfns.begin(); it != marketData->tsfns.end(); ++it)
-    napi_unref_threadsafe_function(env, it->second);
-
-  marketData->tsfns.clear();
-  napi_delete_reference(marketData->env, marketData->wrapper);
-
-  if (marketData->spi)
-    delete marketData->spi;
-
-  if (marketData->api)
-    marketData->api->Release();
-
-  delete marketData;
 }
 
 static napi_value marketDataNew(napi_env env, napi_callback_info info) {
@@ -334,6 +349,7 @@ static napi_value marketDataNew(napi_env env, napi_callback_info info) {
 napi_status defineMarketData(napi_env env, napi_ref *constructor) {
   napi_property_descriptor props[] = {
       DECLARE_NAPI_METHOD(getApiVersion),
+      DECLARE_NAPI_METHOD(getTradingDay),
       DECLARE_NAPI_METHOD(subscribeMarketData),
       DECLARE_NAPI_METHOD(unsubscribeMarketData),
       DECLARE_NAPI_METHOD(subscribeForQuoteRsp),

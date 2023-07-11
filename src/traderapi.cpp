@@ -37,6 +37,17 @@ static napi_value getApiVersion(napi_env env, napi_callback_info info) {
   return version;
 }
 
+static napi_value getTradingDay(napi_env env, napi_callback_info info) {
+  napi_value jsthis, tradingDay;
+  Trader *trader;
+
+  CHECK(napi_get_cb_info(env, info, nullptr, nullptr, &jsthis, nullptr));
+  CHECK(napi_unwrap(env, jsthis, (void **)&trader));
+  CHECK(napi_create_string_utf8(env, trader->api->GetTradingDay(), NAPI_AUTO_LENGTH, &tradingDay));
+
+  return tradingDay;
+}
+
 static napi_value callRequestFunc(napi_env env, napi_callback_info info, const std::function<int(Trader*, napi_value)> &func) {
   size_t argc = 1;
   int result;
@@ -1713,11 +1724,11 @@ static napi_value reqQryRiskSettleProductStatus(napi_env env, napi_callback_info
   });
 }
 
-static bool processMessage(Trader *trader, const Message &message) {
-  const char *eventName = TraderSpi::eventName(message.event);
+static bool processMessage(Trader *trader, const Message *message) {
+  const char *eventName = TraderSpi::eventName(message->event);
 
   if (!eventName) {
-    fprintf(stderr, "<Trader> Unknown message event %d\n", message.event);
+    fprintf(stderr, "<Trader> Unknown message event %d\n", message->event);
     return true;
   }
 
@@ -1725,15 +1736,15 @@ static bool processMessage(Trader *trader, const Message &message) {
 
   if (iter != trader->tsfns.end()) {
     napi_threadsafe_function tsfn = iter->second;
-    CHECK(napi_call_threadsafe_function(tsfn, (void *)&message, napi_tsfn_blocking));
+    CHECK(napi_call_threadsafe_function(tsfn, (void *)message, napi_tsfn_blocking));
   }
 
-  return ET_QUIT != message.event;
+  return ET_QUIT != message->event;
 }
 
 static void processThread(void *data) {
   Trader *trader = (Trader *)data;
-  Message message;
+  Message *message;
   bool isRunning = true;
 
   while (isRunning) {
@@ -1741,18 +1752,36 @@ static void processThread(void *data) {
       continue;
 
     isRunning = processMessage(trader, message);
-    trader->spi->done(message);
   }
 }
 
 static void callJs(napi_env env, napi_value js_cb, void *context, void *data) {
-  // Trader *trader = (Trader *)context;
+  Trader *trader = (Trader *)context;
   Message *message = (Message *)data;
+  int event = message->event;
   napi_value undefined, argv;
 
   CHECK(napi_get_undefined(env, &undefined));
   CHECK(getTraderMessageValue(env, message, &argv));
   CHECK(napi_call_function(env, undefined, js_cb, 1, &argv, nullptr));
+
+  trader->spi->done(message);
+
+  if (ET_QUIT == event) {
+    for (auto it = trader->tsfns.begin(); it != trader->tsfns.end(); ++it)
+      napi_unref_threadsafe_function(env, it->second);
+
+    trader->tsfns.clear();
+    napi_delete_reference(trader->env, trader->wrapper);
+
+    if (trader->api)
+      trader->api->Release();
+
+    if (trader->spi)
+      delete trader->spi;
+
+    delete trader;
+  }
 }
 
 static napi_value on(napi_env env, napi_callback_info info) {
@@ -1795,20 +1824,6 @@ static void traderDestructor(napi_env env, void *data, void *hint) {
     trader->spi->quit();
     uv_thread_join(&trader->thread);
   }
-
-  for (auto it = trader->tsfns.begin(); it != trader->tsfns.end(); ++it)
-    napi_unref_threadsafe_function(env, it->second);
-
-  trader->tsfns.clear();
-  napi_delete_reference(trader->env, trader->wrapper);
-
-  if (trader->spi)
-    delete trader->spi;
-
-  if (trader->api)
-    trader->api->Release();
-
-  delete trader;
 }
 
 static napi_value traderNew(napi_env env, napi_callback_info info) {
@@ -1882,6 +1897,7 @@ static napi_value traderNew(napi_env env, napi_callback_info info) {
 napi_status defineTrader(napi_env env, napi_ref *constructor) {
   napi_property_descriptor props[] = {
       DECLARE_NAPI_METHOD(getApiVersion),
+      DECLARE_NAPI_METHOD(getTradingDay),
       DECLARE_NAPI_METHOD(reqAuthenticate),
       DECLARE_NAPI_METHOD(reqUserLogin),
       DECLARE_NAPI_METHOD(reqUserLogout),

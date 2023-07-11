@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "tradeapi_version": "6.6.7"
+  },
   "targets": [
     {
       "target_name": "napi_ctp",
@@ -16,24 +19,24 @@
         "./src/tradermsg.cpp"
       ],
       "include_dirs": [
-        "./tradeapi"
+        "./tradeapi/<(tradeapi_version)/"
       ],
       "conditions": [
         ['OS=="mac"', {
           "library_dirs": [
-            "<(module_root_dir)/tradeapi/macos"
+            "<(module_root_dir)/tradeapi/<(tradeapi_version)/macos"
           ],
           "libraries": [
-            "libthostmduserapi_v6.6.7_MacOS_20220302.a",
-            "libthosttraderapi-v6.6.7_MacOS_20220302.a",
-            "<(module_root_dir)/tradeapi/macos/libs/comunicationkeylib.a",
-            "<(module_root_dir)/tradeapi/macos/libs/libcrypto.a",
-            "<(module_root_dir)/tradeapi/macos/libs/libssl.a"
+            "libthostmduserapi.a",
+            "libthosttraderapi.a",
+            "<(module_root_dir)/tradeapi/<(tradeapi_version)/macos/libs/comunicationkeylib.a",
+            "<(module_root_dir)/tradeapi/<(tradeapi_version)/macos/libs/libcrypto.a",
+            "<(module_root_dir)/tradeapi/<(tradeapi_version)/macos/libs/libssl.a"
           ]
         }],
         ['OS=="win"', {
           "library_dirs": [
-            "<(module_root_dir)/tradeapi/windows"
+            "<(module_root_dir)/tradeapi/<(tradeapi_version)/windows"
           ],
           "libraries": [
             "thostmduserapi_se.lib",
@@ -43,16 +46,16 @@
             {
               "destination": "<(module_root_dir)/build/Release/",
               "files": [
-                "<(module_root_dir)/tradeapi/windows/thostmduserapi_se.dll",
-                "<(module_root_dir)/tradeapi/windows/thosttraderapi_se.dll"
+                "<(module_root_dir)/tradeapi/<(tradeapi_version)/windows/thostmduserapi_se.dll",
+                "<(module_root_dir)/tradeapi/<(tradeapi_version)/windows/thosttraderapi_se.dll"
               ]
             }
           ]
         }],
         ['OS=="linux"', {
           "libraries": [
-            "<(module_root_dir)/tradeapi/linux/thostmduserapi_se.so",
-            "<(module_root_dir)/tradeapi/linux/thosttraderapi_se.so"
+            "<(module_root_dir)/tradeapi/<(tradeapi_version)/linux/thostmduserapi_se.so",
+            "<(module_root_dir)/tradeapi/<(tradeapi_version)/linux/thosttraderapi_se.so"
           ]
         }]
       ]

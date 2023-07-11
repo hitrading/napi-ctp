@@ -1,5 +1,8 @@
 {
-    "[cpp]": {
-        "editor.formatOnSave": false
-    }
+  "[cpp]": {
+    "editor.formatOnSave": false,
+  },
+  "[js,ts]": {
+    "editor.tabSize": 2
+  }
 }
