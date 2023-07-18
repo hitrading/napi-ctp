@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "NodeNext",
     "target": "ES5",
-    "outDir": ".",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
@@ -12,5 +12,5 @@
     "skipLibCheck": true,
     "declaration": true
   },
-  "files": ["enum.ts"]
+  "files": ["interfaces/enum.ts"]
 }

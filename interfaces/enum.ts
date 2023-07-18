@@ -1,3794 +1,3647 @@
-/*
- * types.ts
- *
- * Copyright (c) 2022, 2023 Xiongfei Shi
- *
- * Author: Xiongfei Shi <xiongfei.shi(a)icloud.com>
- * License: Apache-2.0
- *
- * https://github.com/shixiongfei/napi-ctp
- */
+'use strict';
 
 /** 交易所属性类型 */
 export enum ExchangePropertyType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 根据成交生成报单 */
-  GenOrderByTrade = "1",
-}
+  GenOrderByTrade = '1',
+};
 
 /** 证件类型类型 */
-export enum IdCardType {
+export enum IdCardTypeType {
   /** 组织机构代码 */
-  EID = "0",
+  EID = '0',
   /** 中国公民身份证 */
-  IDCard = "1",
+  IDCard = '1',
   /** 军官证 */
-  OfficerIDCard = "2",
+  OfficerIDCard = '2',
   /** 警官证 */
-  PoliceIDCard = "3",
+  PoliceIDCard = '3',
   /** 士兵证 */
-  SoldierIDCard = "4",
+  SoldierIDCard = '4',
   /** 户口簿 */
-  HouseholdRegister = "5",
+  HouseholdRegister = '5',
   /** 护照 */
-  Passport = "6",
+  Passport = '6',
   /** 台胞证 */
-  TaiwanCompatriotIDCard = "7",
+  TaiwanCompatriotIDCard = '7',
   /** 回乡证 */
-  HomeComingCard = "8",
+  HomeComingCard = '8',
   /** 营业执照号 */
-  LicenseNo = "9",
-  /** 税务登记号/当地纳税ID */
-  TaxNo = "A",
+  LicenseNo = '9',
+  /** 税务登记号当地纳税ID */
+  TaxNo = 'A',
   /** 港澳居民来往内地通行证 */
-  HMMainlandTravelPermit = "B",
+  HMMainlandTravelPermit = 'B',
   /** 台湾居民来往大陆通行证 */
-  TwMainlandTravelPermit = "C",
+  TwMainlandTravelPermit = 'C',
   /** 驾照 */
-  DrivingLicense = "D",
+  DrivingLicense = 'D',
   /** 当地社保ID */
-  SocialID = "F",
+  SocialID = 'F',
   /** 当地身份证 */
-  LocalID = "G",
+  LocalID = 'G',
   /** 商业登记证 */
-  BusinessRegistration = "H",
+  BusinessRegistration = 'H',
   /** 港澳永久性居民身份证 */
-  HKMCIDCard = "I",
+  HKMCIDCard = 'I',
   /** 人行开户许可证 */
-  AccountsPermits = "J",
+  AccountsPermits = 'J',
   /** 外国人永久居留证 */
-  FrgPrmtRdCard = "K",
+  FrgPrmtRdCard = 'K',
   /** 资管产品备案函 */
-  CptMngPrdLetter = "L",
+  CptMngPrdLetter = 'L',
   /** 港澳台居民居住证 */
-  HKMCTwResidencePermit = "M",
+  HKMCTwResidencePermit = 'M',
   /** 统一社会信用代码 */
-  UniformSocialCreditCode = "N",
+  UniformSocialCreditCode = 'N',
   /** 机构成立证明文件 */
-  CorporationCertNo = "O",
+  CorporationCertNo = 'O',
   /** 其他证件 */
-  OtherCard = "x",
-}
+  OtherCard = 'x',
+};
 
 /** 投资者范围类型 */
 export enum InvestorRangeType {
   /** 所有 */
-  All = "1",
+  All = '1',
   /** 投资者组 */
-  Group = "2",
+  Group = '2',
   /** 单一投资者 */
-  Single = "3",
-}
+  Single = '3',
+};
 
 /** 投资者范围类型 */
 export enum DepartmentRangeType {
   /** 所有 */
-  All = "1",
+  All = '1',
   /** 组织架构 */
-  Group = "2",
+  Group = '2',
   /** 单一投资者 */
-  Single = "3",
-}
+  Single = '3',
+};
 
 /** 数据同步状态类型 */
 export enum DataSyncStatusType {
   /** 未同步 */
-  Asynchronous = "1",
+  Asynchronous = '1',
   /** 同步中 */
-  Synchronizing = "2",
+  Synchronizing = '2',
   /** 已同步 */
-  Synchronized = "3",
-}
+  Synchronized = '3',
+};
 
 /** 经纪公司数据同步状态类型 */
 export enum BrokerDataSyncStatusType {
   /** 已同步 */
-  Synchronized = "1",
+  Synchronized = '1',
   /** 同步中 */
-  Synchronizing = "2",
-}
+  Synchronizing = '2',
+};
 
 /** 交易所连接状态类型 */
 export enum ExchangeConnectStatusType {
   /** 没有任何连接 */
-  NoConnection = "1",
+  NoConnection = '1',
   /** 已经发出合约查询请求 */
-  QryInstrumentSent = "2",
+  QryInstrumentSent = '2',
   /** 已经获取信息 */
-  GotInformation = "9",
-}
+  GotInformation = '9',
+};
 
 /** 交易所交易员连接状态类型 */
 export enum TraderConnectStatusType {
   /** 没有任何连接 */
-  NotConnected = "1",
+  NotConnected = '1',
   /** 已经连接 */
-  Connected = "2",
+  Connected = '2',
   /** 已经发出合约查询请求 */
-  QryInstrumentSent = "3",
+  QryInstrumentSent = '3',
   /** 订阅私有流 */
-  SubPrivateFlow = "4",
-}
+  SubPrivateFlow = '4',
+};
 
 /** 功能代码类型 */
 export enum FunctionCodeType {
   /** 数据异步化 */
-  DataAsync = "1",
+  DataAsync = '1',
   /** 强制用户登出 */
-  ForceUserLogout = "2",
+  ForceUserLogout = '2',
   /** 变更管理用户口令 */
-  UserPasswordUpdate = "3",
+  UserPasswordUpdate = '3',
   /** 变更经纪公司口令 */
-  BrokerPasswordUpdate = "4",
+  BrokerPasswordUpdate = '4',
   /** 变更投资者口令 */
-  InvestorPasswordUpdate = "5",
+  InvestorPasswordUpdate = '5',
   /** 报单插入 */
-  OrderInsert = "6",
+  OrderInsert = '6',
   /** 报单操作 */
-  OrderAction = "7",
+  OrderAction = '7',
   /** 同步系统数据 */
-  SyncSystemData = "8",
+  SyncSystemData = '8',
   /** 同步经纪公司数据 */
-  SyncBrokerData = "9",
+  SyncBrokerData = '9',
   /** 批量同步经纪公司数据 */
-  BachSyncBrokerData = "A",
+  BachSyncBrokerData = 'A',
   /** 超级查询 */
-  SuperQuery = "B",
+  SuperQuery = 'B',
   /** 预埋报单插入 */
-  ParkedOrderInsert = "C",
+  ParkedOrderInsert = 'C',
   /** 预埋报单操作 */
-  ParkedOrderAction = "D",
+  ParkedOrderAction = 'D',
   /** 同步动态令牌 */
-  SyncOTP = "E",
+  SyncOTP = 'E',
   /** 删除未知单 */
-  DeleteOrder = "F",
-}
+  DeleteOrder = 'F',
+};
 
 /** 经纪公司功能代码类型 */
 export enum BrokerFunctionCodeType {
   /** 强制用户登出 */
-  ForceUserLogout = "1",
+  ForceUserLogout = '1',
   /** 变更用户口令 */
-  UserPasswordUpdate = "2",
+  UserPasswordUpdate = '2',
   /** 同步经纪公司数据 */
-  SyncBrokerData = "3",
+  SyncBrokerData = '3',
   /** 批量同步经纪公司数据 */
-  BachSyncBrokerData = "4",
+  BachSyncBrokerData = '4',
   /** 报单插入 */
-  OrderInsert = "5",
+  OrderInsert = '5',
   /** 报单操作 */
-  OrderAction = "6",
+  OrderAction = '6',
   /** 全部查询 */
-  AllQuery = "7",
-  /** 系统功能：登入/登出/修改密码等 */
-  log = "a",
+  AllQuery = '7',
+  /** 系统功能：登入登出修改密码等 */
+  log = 'a',
   /** 基本查询：查询基础数据，如合约，交易所等常量 */
-  BaseQry = "b",
+  BaseQry = 'b',
   /** 交易查询：如查成交，委托 */
-  TradeQry = "c",
+  TradeQry = 'c',
   /** 交易功能：报单，撤单 */
-  Trade = "d",
+  Trade = 'd',
   /** 银期转账 */
-  Virement = "e",
+  Virement = 'e',
   /** 风险监控 */
-  Risk = "f",
-  /** 查询/管理：查询会话，踢人等 */
-  Session = "g",
+  Risk = 'f',
+  /** 查询管理：查询会话，踢人等 */
+  Session = 'g',
   /** 风控通知控制 */
-  RiskNoticeCtl = "h",
+  RiskNoticeCtl = 'h',
   /** 风控通知发送 */
-  RiskNotice = "i",
+  RiskNotice = 'i',
   /** 察看经纪公司资金权限 */
-  BrokerDeposit = "j",
+  BrokerDeposit = 'j',
   /** 资金查询 */
-  QueryFund = "k",
+  QueryFund = 'k',
   /** 报单查询 */
-  QueryOrder = "l",
+  QueryOrder = 'l',
   /** 成交查询 */
-  QueryTrade = "m",
+  QueryTrade = 'm',
   /** 持仓查询 */
-  QueryPosition = "n",
+  QueryPosition = 'n',
   /** 行情查询 */
-  QueryMarketData = "o",
+  QueryMarketData = 'o',
   /** 用户事件查询 */
-  QueryUserEvent = "p",
+  QueryUserEvent = 'p',
   /** 风险通知查询 */
-  QueryRiskNotify = "q",
+  QueryRiskNotify = 'q',
   /** 出入金查询 */
-  QueryFundChange = "r",
+  QueryFundChange = 'r',
   /** 投资者信息查询 */
-  QueryInvestor = "s",
+  QueryInvestor = 's',
   /** 交易编码查询 */
-  QueryTradingCode = "t",
+  QueryTradingCode = 't',
   /** 强平 */
-  ForceClose = "u",
+  ForceClose = 'u',
   /** 压力测试 */
-  PressTest = "v",
+  PressTest = 'v',
   /** 权益反算 */
-  RemainCalc = "w",
+  RemainCalc = 'w',
   /** 净持仓保证金指标 */
-  NetPositionInd = "x",
+  NetPositionInd = 'x',
   /** 风险预算 */
-  RiskPredict = "y",
+  RiskPredict = 'y',
   /** 数据导出 */
-  DataExport = "z",
+  DataExport = 'z',
   /** 风控指标设置 */
-  RiskTargetSetup = "A",
+  RiskTargetSetup = 'A',
   /** 行情预警 */
-  MarketDataWarn = "B",
+  MarketDataWarn = 'B',
   /** 业务通知查询 */
-  QryBizNotice = "C",
+  QryBizNotice = 'C',
   /** 业务通知模板设置 */
-  CfgBizNotice = "D",
+  CfgBizNotice = 'D',
   /** 同步动态令牌 */
-  SyncOTP = "E",
+  SyncOTP = 'E',
   /** 发送业务通知 */
-  SendBizNotice = "F",
+  SendBizNotice = 'F',
   /** 风险级别标准设置 */
-  CfgRiskLevelStd = "G",
+  CfgRiskLevelStd = 'G',
   /** 交易终端应急功能 */
-  TbCommand = "H",
+  TbCommand = 'H',
   /** 删除未知单 */
-  DeleteOrder = "J",
+  DeleteOrder = 'J',
   /** 预埋报单插入 */
-  ParkedOrderInsert = "K",
+  ParkedOrderInsert = 'K',
   /** 预埋报单操作 */
-  ParkedOrderAction = "L",
+  ParkedOrderAction = 'L',
   /** 资金不够仍允许行权 */
-  ExecOrderNoCheck = "M",
+  ExecOrderNoCheck = 'M',
   /** 指定 */
-  Designate = "N",
+  Designate = 'N',
   /** 证券处置 */
-  StockDisposal = "O",
+  StockDisposal = 'O',
   /** 席位资金预警 */
-  BrokerDepositWarn = "Q",
+  BrokerDepositWarn = 'Q',
   /** 备兑不足预警 */
-  CoverWarn = "S",
+  CoverWarn = 'S',
   /** 行权试算 */
-  PreExecOrder = "T",
+  PreExecOrder = 'T',
   /** 行权交收风险 */
-  ExecOrderRisk = "P",
+  ExecOrderRisk = 'P',
   /** 持仓限额预警 */
-  PosiLimitWarn = "U",
+  PosiLimitWarn = 'U',
   /** 持仓限额查询 */
-  QryPosiLimit = "V",
+  QryPosiLimit = 'V',
   /** 银期签到签退 */
-  FBSign = "W",
+  FBSign = 'W',
   /** 银期签约解约 */
-  FBAccount = "X",
-}
+  FBAccount = 'X',
+};
 
 /** 报单操作状态类型 */
 export enum OrderActionStatusType {
   /** 已经提交 */
-  Submitted = "a",
+  Submitted = 'a',
   /** 已经接受 */
-  Accepted = "b",
+  Accepted = 'b',
   /** 已经被拒绝 */
-  Rejected = "c",
-}
+  Rejected = 'c',
+};
 
 /** 报单状态类型 */
 export enum OrderStatusType {
   /** 全部成交 */
-  AllTraded = "0",
+  AllTraded = '0',
   /** 部分成交还在队列中 */
-  PartTradedQueueing = "1",
+  PartTradedQueueing = '1',
   /** 部分成交不在队列中 */
-  PartTradedNotQueueing = "2",
+  PartTradedNotQueueing = '2',
   /** 未成交还在队列中 */
-  NoTradeQueueing = "3",
+  NoTradeQueueing = '3',
   /** 未成交不在队列中 */
-  NoTradeNotQueueing = "4",
+  NoTradeNotQueueing = '4',
   /** 撤单 */
-  Canceled = "5",
+  Canceled = '5',
   /** 未知 */
-  Unknown = "a",
+  Unknown = 'a',
   /** 尚未触发 */
-  NotTouched = "b",
+  NotTouched = 'b',
   /** 已触发 */
-  Touched = "c",
-}
+  Touched = 'c',
+};
 
 /** 报单提交状态类型 */
 export enum OrderSubmitStatusType {
   /** 已经提交 */
-  InsertSubmitted = "0",
+  InsertSubmitted = '0',
   /** 撤单已经提交 */
-  CancelSubmitted = "1",
+  CancelSubmitted = '1',
   /** 修改已经提交 */
-  ModifySubmitted = "2",
+  ModifySubmitted = '2',
   /** 已经接受 */
-  Accepted = "3",
+  Accepted = '3',
   /** 报单已经被拒绝 */
-  InsertRejected = "4",
+  InsertRejected = '4',
   /** 撤单已经被拒绝 */
-  CancelRejected = "5",
+  CancelRejected = '5',
   /** 改单已经被拒绝 */
-  ModifyRejected = "6",
-}
+  ModifyRejected = '6',
+};
 
 /** 持仓日期类型 */
 export enum PositionDateType {
   /** 今日持仓 */
-  Today = "1",
+  Today = '1',
   /** 历史持仓 */
-  History = "2",
-}
+  History = '2',
+};
 
 /** 持仓日期类型类型 */
-export enum PositionDateType {
+export enum PositionDateTypeType {
   /** 使用历史持仓 */
-  UseHistory = "1",
+  UseHistory = '1',
   /** 不使用历史持仓 */
-  NoUseHistory = "2",
-}
+  NoUseHistory = '2',
+};
 
 /** 交易角色类型 */
 export enum TradingRoleType {
   /** 代理 */
-  Broker = "1",
+  Broker = '1',
   /** 自营 */
-  Host = "2",
+  Host = '2',
   /** 做市商 */
-  Maker = "3",
-}
+  Maker = '3',
+};
 
 /** 产品类型类型 */
 export enum ProductClassType {
   /** 期货 */
-  Futures = "1",
+  Futures = '1',
   /** 期货期权 */
-  Options = "2",
+  Options = '2',
   /** 组合 */
-  Combination = "3",
+  Combination = '3',
   /** 即期 */
-  Spot = "4",
+  Spot = '4',
   /** 期转现 */
-  EFP = "5",
+  EFP = '5',
   /** 现货期权 */
-  SpotOption = "6",
+  SpotOption = '6',
   /** TAS合约 */
-  TAS = "7",
+  TAS = '7',
   /** 金属指数 */
-  MI = "I",
-}
+  MI = 'I',
+};
 
 /** 产品类型类型 */
 export enum APIProductClassType {
   /** 期货单一合约 */
-  FutureSingle = "1",
+  FutureSingle = '1',
   /** 期权单一合约 */
-  OptionSingle = "2",
+  OptionSingle = '2',
   /** 可交易期货(含期货组合和期货单一合约) */
-  Futures = "3",
+  Futures = '3',
   /** 可交易期权(含期权组合和期权单一合约) */
-  Options = "4",
-  /** 可下单组合（目前包含DCE和ZCE的期货组合） */
-  TradingComb = "5",
-  /** 可申请的组合（dce可以申请的组合合约 包含dce可以交易的合约） */
-  UnTradingComb = "6",
+  Options = '4',
+  /** 可下单套利组合 */
+  TradingComb = '5',
+  /** 可申请的组合（可以申请的组合合约 包含可以交易的合约） */
+  UnTradingComb = '6',
   /** 所有可以交易合约 */
-  AllTrading = "7",
+  AllTrading = '7',
   /** 所有合约（包含不能交易合约 慎用） */
-  All = "8",
-}
+  All = '8',
+};
 
 /** 合约生命周期状态类型 */
 export enum InstLifePhaseType {
   /** 未上市 */
-  NotStart = "0",
+  NotStart = '0',
   /** 上市 */
-  Started = "1",
+  Started = '1',
   /** 停牌 */
-  Pause = "2",
+  Pause = '2',
   /** 到期 */
-  Expired = "3",
-}
+  Expired = '3',
+};
 
 /** 买卖方向类型 */
 export enum DirectionType {
   /** 买 */
-  Buy = "0",
+  Buy = '0',
   /** 卖 */
-  Sell = "1",
-}
+  Sell = '1',
+};
 
 /** 持仓类型类型 */
-export enum PositionType {
+export enum PositionTypeType {
   /** 净持仓 */
-  Net = "1",
+  Net = '1',
   /** 综合持仓 */
-  Gross = "2",
-}
+  Gross = '2',
+};
 
 /** 持仓多空方向类型 */
 export enum PosiDirectionType {
   /** 净 */
-  Net = "1",
+  Net = '1',
   /** 多头 */
-  Long = "2",
+  Long = '2',
   /** 空头 */
-  Short = "3",
-}
+  Short = '3',
+};
 
 /** 系统结算状态类型 */
 export enum SysSettlementStatusType {
   /** 不活跃 */
-  NonActive = "1",
+  NonActive = '1',
   /** 启动 */
-  Startup = "2",
+  Startup = '2',
   /** 操作 */
-  Operating = "3",
+  Operating = '3',
   /** 结算 */
-  Settlement = "4",
+  Settlement = '4',
   /** 结算完成 */
-  SettlementFinished = "5",
-}
+  SettlementFinished = '5',
+};
 
 /** 费率属性类型 */
 export enum RatioAttrType {
   /** 交易费率 */
-  Trade = "0",
+  Trade = '0',
   /** 结算费率 */
-  Settlement = "1",
-}
+  Settlement = '1',
+};
 
 /** 投机套保标志类型 */
 export enum HedgeFlagType {
   /** 投机 */
-  Speculation = "1",
+  Speculation = '1',
   /** 套利 */
-  Arbitrage = "2",
+  Arbitrage = '2',
   /** 套保 */
-  Hedge = "3",
+  Hedge = '3',
   /** 做市商 */
-  MarketMaker = "5",
-  /** 第一腿投机第二腿套保 大商所专用 */
-  SpecHedge = "6",
-  /** 第一腿套保第二腿投机  大商所专用 */
-  HedgeSpec = "7",
-}
+  MarketMaker = '5',
+  /** 第一腿投机第二腿套保 */
+  SpecHedge = '6',
+  /** 第一腿套保第二腿投机 */
+  HedgeSpec = '7',
+};
 
 /** 投机套保标志类型 */
 export enum BillHedgeFlagType {
   /** 投机 */
-  Speculation = "1",
+  Speculation = '1',
   /** 套利 */
-  Arbitrage = "2",
+  Arbitrage = '2',
   /** 套保 */
-  Hedge = "3",
-}
+  Hedge = '3',
+};
 
 /** 交易编码类型类型 */
-export enum ClientIDType {
+export enum ClientIDTypeType {
   /** 投机 */
-  Speculation = "1",
+  Speculation = '1',
   /** 套利 */
-  Arbitrage = "2",
+  Arbitrage = '2',
   /** 套保 */
-  Hedge = "3",
+  Hedge = '3',
   /** 做市商 */
-  MarketMaker = "5",
-}
+  MarketMaker = '5',
+};
 
 /** 报单价格条件类型 */
-export enum OrderPriceType {
+export enum OrderPriceTypeType {
   /** 任意价 */
-  AnyPrice = "1",
+  AnyPrice = '1',
   /** 限价 */
-  LimitPrice = "2",
+  LimitPrice = '2',
   /** 最优价 */
-  BestPrice = "3",
+  BestPrice = '3',
   /** 最新价 */
-  LastPrice = "4",
+  LastPrice = '4',
   /** 最新价浮动上浮1个ticks */
-  LastPricePlusOneTicks = "5",
+  LastPricePlusOneTicks = '5',
   /** 最新价浮动上浮2个ticks */
-  LastPricePlusTwoTicks = "6",
+  LastPricePlusTwoTicks = '6',
   /** 最新价浮动上浮3个ticks */
-  LastPricePlusThreeTicks = "7",
+  LastPricePlusThreeTicks = '7',
   /** 卖一价 */
-  AskPrice1 = "8",
+  AskPrice1 = '8',
   /** 卖一价浮动上浮1个ticks */
-  AskPrice1PlusOneTicks = "9",
+  AskPrice1PlusOneTicks = '9',
   /** 卖一价浮动上浮2个ticks */
-  AskPrice1PlusTwoTicks = "A",
+  AskPrice1PlusTwoTicks = 'A',
   /** 卖一价浮动上浮3个ticks */
-  AskPrice1PlusThreeTicks = "B",
+  AskPrice1PlusThreeTicks = 'B',
   /** 买一价 */
-  BidPrice1 = "C",
+  BidPrice1 = 'C',
   /** 买一价浮动上浮1个ticks */
-  BidPrice1PlusOneTicks = "D",
+  BidPrice1PlusOneTicks = 'D',
   /** 买一价浮动上浮2个ticks */
-  BidPrice1PlusTwoTicks = "E",
+  BidPrice1PlusTwoTicks = 'E',
   /** 买一价浮动上浮3个ticks */
-  BidPrice1PlusThreeTicks = "F",
+  BidPrice1PlusThreeTicks = 'F',
   /** 五档价 */
-  FiveLevelPrice = "G",
-}
+  FiveLevelPrice = 'G',
+};
 
 /** 开平标志类型 */
 export enum OffsetFlagType {
   /** 开仓 */
-  Open = "0",
+  Open = '0',
   /** 平仓 */
-  Close = "1",
+  Close = '1',
   /** 强平 */
-  ForceClose = "2",
+  ForceClose = '2',
   /** 平今 */
-  CloseToday = "3",
+  CloseToday = '3',
   /** 平昨 */
-  CloseYesterday = "4",
+  CloseYesterday = '4',
   /** 强减 */
-  ForceOff = "5",
+  ForceOff = '5',
   /** 本地强平 */
-  LocalForceClose = "6",
-}
+  LocalForceClose = '6',
+};
 
 /** 强平原因类型 */
 export enum ForceCloseReasonType {
   /** 非强平 */
-  NotForceClose = "0",
+  NotForceClose = '0',
   /** 资金不足 */
-  LackDeposit = "1",
+  LackDeposit = '1',
   /** 客户超仓 */
-  ClientOverPositionLimit = "2",
+  ClientOverPositionLimit = '2',
   /** 会员超仓 */
-  MemberOverPositionLimit = "3",
+  MemberOverPositionLimit = '3',
   /** 持仓非整数倍 */
-  NotMultiple = "4",
+  NotMultiple = '4',
   /** 违规 */
-  Violation = "5",
+  Violation = '5',
   /** 其它 */
-  Other = "6",
+  Other = '6',
   /** 自然人临近交割 */
-  PersonDeliv = "7",
+  PersonDeliv = '7',
   /** 风控强平不验证资金 */
-  Notverifycapital = "8",
-}
+  Notverifycapital = '8',
+};
 
 /** 报单类型类型 */
-export enum OrderType {
+export enum OrderTypeType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 报价衍生 */
-  DeriveFromQuote = "1",
+  DeriveFromQuote = '1',
   /** 组合衍生 */
-  DeriveFromCombination = "2",
+  DeriveFromCombination = '2',
   /** 组合报单 */
-  Combination = "3",
+  Combination = '3',
   /** 条件单 */
-  ConditionalOrder = "4",
+  ConditionalOrder = '4',
   /** 互换单 */
-  Swap = "5",
+  Swap = '5',
   /** 大宗交易成交衍生 */
-  DeriveFromBlockTrade = "6",
+  DeriveFromBlockTrade = '6',
   /** 期转现成交衍生 */
-  DeriveFromEFPTrade = "7",
-}
+  DeriveFromEFPTrade = '7',
+};
 
 /** 有效期类型类型 */
 export enum TimeConditionType {
   /** 立即完成，否则撤销 */
-  IOC = "1",
+  IOC = '1',
   /** 本节有效 */
-  GFS = "2",
+  GFS = '2',
   /** 当日有效 */
-  GFD = "3",
+  GFD = '3',
   /** 指定日期前有效 */
-  GTD = "4",
+  GTD = '4',
   /** 撤销前有效 */
-  GTC = "5",
+  GTC = '5',
   /** 集合竞价有效 */
-  GFA = "6",
-}
+  GFA = '6',
+};
 
 /** 成交量类型类型 */
 export enum VolumeConditionType {
   /** 任何数量 */
-  AV = "1",
+  AV = '1',
   /** 最小数量 */
-  MV = "2",
+  MV = '2',
   /** 全部数量 */
-  CV = "3",
-}
+  CV = '3',
+};
 
 /** 触发条件类型 */
 export enum ContingentConditionType {
   /** 立即 */
-  Immediately = "1",
+  Immediately = '1',
   /** 止损 */
-  Touch = "2",
+  Touch = '2',
   /** 止赢 */
-  TouchProfit = "3",
+  TouchProfit = '3',
   /** 预埋单 */
-  ParkedOrder = "4",
+  ParkedOrder = '4',
   /** 最新价大于条件价 */
-  LastPriceGreaterThanStopPrice = "5",
+  LastPriceGreaterThanStopPrice = '5',
   /** 最新价大于等于条件价 */
-  LastPriceGreaterEqualStopPrice = "6",
+  LastPriceGreaterEqualStopPrice = '6',
   /** 最新价小于条件价 */
-  LastPriceLesserThanStopPrice = "7",
+  LastPriceLesserThanStopPrice = '7',
   /** 最新价小于等于条件价 */
-  LastPriceLesserEqualStopPrice = "8",
+  LastPriceLesserEqualStopPrice = '8',
   /** 卖一价大于条件价 */
-  AskPriceGreaterThanStopPrice = "9",
+  AskPriceGreaterThanStopPrice = '9',
   /** 卖一价大于等于条件价 */
-  AskPriceGreaterEqualStopPrice = "A",
+  AskPriceGreaterEqualStopPrice = 'A',
   /** 卖一价小于条件价 */
-  AskPriceLesserThanStopPrice = "B",
+  AskPriceLesserThanStopPrice = 'B',
   /** 卖一价小于等于条件价 */
-  AskPriceLesserEqualStopPrice = "C",
+  AskPriceLesserEqualStopPrice = 'C',
   /** 买一价大于条件价 */
-  BidPriceGreaterThanStopPrice = "D",
+  BidPriceGreaterThanStopPrice = 'D',
   /** 买一价大于等于条件价 */
-  BidPriceGreaterEqualStopPrice = "E",
+  BidPriceGreaterEqualStopPrice = 'E',
   /** 买一价小于条件价 */
-  BidPriceLesserThanStopPrice = "F",
+  BidPriceLesserThanStopPrice = 'F',
   /** 买一价小于等于条件价 */
-  BidPriceLesserEqualStopPrice = "H",
-}
+  BidPriceLesserEqualStopPrice = 'H',
+};
 
 /** 操作标志类型 */
 export enum ActionFlagType {
   /** 删除 */
-  Delete = "0",
+  Delete = '0',
   /** 修改 */
-  Modify = "3",
-}
+  Modify = '3',
+};
 
 /** 交易权限类型 */
 export enum TradingRightType {
   /** 可以交易 */
-  Allow = "0",
+  Allow = '0',
   /** 只能平仓 */
-  CloseOnly = "1",
+  CloseOnly = '1',
   /** 不能交易 */
-  Forbidden = "2",
-}
+  Forbidden = '2',
+};
 
 /** 报单来源类型 */
 export enum OrderSourceType {
   /** 来自参与者 */
-  Participant = "0",
+  Participant = '0',
   /** 来自管理员 */
-  Administrator = "1",
-}
+  Administrator = '1',
+};
 
 /** 成交类型类型 */
-export enum TradeType {
+export enum TradeTypeType {
   /** 组合持仓拆分为单一持仓,初始化不应包含该类型的持仓 */
-  SplitCombination = "#",
+  SplitCombination = '#',
   /** 普通成交 */
-  Common = "0",
+  Common = '0',
   /** 期权执行 */
-  OptionsExecution = "1",
+  OptionsExecution = '1',
   /** OTC成交 */
-  OTC = "2",
+  OTC = '2',
   /** 期转现衍生成交 */
-  EFPDerived = "3",
+  EFPDerived = '3',
   /** 组合衍生成交 */
-  CombinationDerived = "4",
+  CombinationDerived = '4',
   /** 大宗交易成交 */
-  BlockTrade = "5",
-}
+  BlockTrade = '5',
+};
 
 /** 特殊持仓明细标识类型 */
-export enum SpecPosiType {
+export enum SpecPosiTypeType {
   /** 普通持仓明细 */
-  Common = "#",
+  Common = '#',
   /** TAS合约成交产生的标的合约持仓明细 */
-  Tas = "0",
-}
+  Tas = '0',
+};
 
 /** 成交价来源类型 */
 export enum PriceSourceType {
   /** 前成交价 */
-  LastPrice = "0",
+  LastPrice = '0',
   /** 买委托价 */
-  Buy = "1",
+  Buy = '1',
   /** 卖委托价 */
-  Sell = "2",
+  Sell = '2',
   /** 场外成交价 */
-  OTC = "3",
-}
+  OTC = '3',
+};
 
 /** 合约交易状态类型 */
 export enum InstrumentStatusType {
   /** 开盘前 */
-  BeforeTrading = "0",
+  BeforeTrading = '0',
   /** 非交易 */
-  NoTrading = "1",
+  NoTrading = '1',
   /** 连续交易 */
-  Continous = "2",
+  Continous = '2',
   /** 集合竞价报单 */
-  AuctionOrdering = "3",
+  AuctionOrdering = '3',
   /** 集合竞价价格平衡 */
-  AuctionBalance = "4",
+  AuctionBalance = '4',
   /** 集合竞价撮合 */
-  AuctionMatch = "5",
+  AuctionMatch = '5',
   /** 收盘 */
-  Closed = "6",
-}
+  Closed = '6',
+};
 
 /** 品种进入交易状态原因类型 */
 export enum InstStatusEnterReasonType {
   /** 自动切换 */
-  Automatic = "1",
+  Automatic = '1',
   /** 手动切换 */
-  Manual = "2",
+  Manual = '2',
   /** 熔断 */
-  Fuse = "3",
-}
+  Fuse = '3',
+};
 
 /** 处理状态类型 */
 export enum BatchStatusType {
   /** 未上传 */
-  NoUpload = "1",
+  NoUpload = '1',
   /** 已上传 */
-  Uploaded = "2",
+  Uploaded = '2',
   /** 审核失败 */
-  Failed = "3",
-}
+  Failed = '3',
+};
 
 /** 按品种返还方式类型 */
 export enum ReturnStyleType {
   /** 按所有品种 */
-  All = "1",
+  All = '1',
   /** 按品种 */
-  ByProduct = "2",
-}
+  ByProduct = '2',
+};
 
 /** 返还模式类型 */
 export enum ReturnPatternType {
   /** 按成交手数 */
-  ByVolume = "1",
+  ByVolume = '1',
   /** 按留存手续费 */
-  ByFeeOnHand = "2",
-}
+  ByFeeOnHand = '2',
+};
 
 /** 返还级别类型 */
 export enum ReturnLevelType {
   /** 级别1 */
-  Level1 = "1",
+  Level1 = '1',
   /** 级别2 */
-  Level2 = "2",
+  Level2 = '2',
   /** 级别3 */
-  Level3 = "3",
+  Level3 = '3',
   /** 级别4 */
-  Level4 = "4",
+  Level4 = '4',
   /** 级别5 */
-  Level5 = "5",
+  Level5 = '5',
   /** 级别6 */
-  Level6 = "6",
+  Level6 = '6',
   /** 级别7 */
-  Level7 = "7",
+  Level7 = '7',
   /** 级别8 */
-  Level8 = "8",
+  Level8 = '8',
   /** 级别9 */
-  Level9 = "9",
-}
+  Level9 = '9',
+};
 
 /** 返还标准类型 */
 export enum ReturnStandardType {
   /** 分阶段返还 */
-  ByPeriod = "1",
+  ByPeriod = '1',
   /** 按某一标准 */
-  ByStandard = "2",
-}
+  ByStandard = '2',
+};
 
 /** 质押类型类型 */
-export enum MortgageType {
+export enum MortgageTypeType {
   /** 质出 */
-  Out = "0",
+  Out = '0',
   /** 质入 */
-  In = "1",
-}
+  In = '1',
+};
 
 /** 投资者结算参数代码类型 */
 export enum InvestorSettlementParamIDType {
   /** 质押比例 */
-  MortgageRatio = "4",
+  MortgageRatio = '4',
   /** 保证金算法 */
-  MarginWay = "5",
+  MarginWay = '5',
   /** 结算单结存是否包含质押 */
-  BillDeposit = "9",
-}
+  BillDeposit = '9',
+};
 
 /** 交易所结算参数代码类型 */
 export enum ExchangeSettlementParamIDType {
   /** 质押比例 */
-  MortgageRatio = "1",
+  MortgageRatio = '1',
   /** 分项资金导入项 */
-  OtherFundItem = "2",
+  OtherFundItem = '2',
   /** 分项资金入交易所出入金 */
-  OtherFundImport = "3",
+  OtherFundImport = '3',
   /** 中金所开户最低可用金额 */
-  CFFEXMinPrepa = "6",
+  CFFEXMinPrepa = '6',
   /** 郑商所结算方式 */
-  CZCESettlementType = "7",
+  CZCESettlementType = '7',
   /** 交易所交割手续费收取方式 */
-  ExchDelivFeeMode = "9",
+  ExchDelivFeeMode = '9',
   /** 投资者交割手续费收取方式 */
-  DelivFeeMode = "0",
+  DelivFeeMode = '0',
   /** 郑商所组合持仓保证金收取方式 */
-  CZCEComMarginType = "A",
+  CZCEComMarginType = 'A',
   /** 大商所套利保证金是否优惠 */
-  DceComMarginType = "B",
+  DceComMarginType = 'B',
   /** 虚值期权保证金优惠比率 */
-  OptOutDisCountRate = "a",
+  OptOutDisCountRate = 'a',
   /** 最低保障系数 */
-  OptMiniGuarantee = "b",
-}
+  OptMiniGuarantee = 'b',
+};
 
 /** 系统参数代码类型 */
 export enum SystemParamIDType {
   /** 投资者代码最小长度 */
-  InvestorIDMinLength = "1",
+  InvestorIDMinLength = '1',
   /** 投资者帐号代码最小长度 */
-  AccountIDMinLength = "2",
+  AccountIDMinLength = '2',
   /** 投资者开户默认登录权限 */
-  UserRightLogon = "3",
+  UserRightLogon = '3',
   /** 投资者交易结算单成交汇总方式 */
-  SettlementBillTrade = "4",
+  SettlementBillTrade = '4',
   /** 统一开户更新交易编码方式 */
-  TradingCode = "5",
+  TradingCode = '5',
   /** 结算是否判断存在未复核的出入金和分项资金 */
-  CheckFund = "6",
+  CheckFund = '6',
   /** 是否启用手续费模板数据权限 */
-  CommModelRight = "7",
+  CommModelRight = '7',
   /** 是否启用保证金率模板数据权限 */
-  MarginModelRight = "9",
+  MarginModelRight = '9',
   /** 是否规范用户才能激活 */
-  IsStandardActive = "8",
+  IsStandardActive = '8',
   /** 上传的交易所结算文件路径 */
-  UploadSettlementFile = "U",
+  UploadSettlementFile = 'U',
   /** 上报保证金监控中心文件路径 */
-  DownloadCSRCFile = "D",
+  DownloadCSRCFile = 'D',
   /** 生成的结算单文件路径 */
-  SettlementBillFile = "S",
+  SettlementBillFile = 'S',
   /** 证监会文件标识 */
-  CSRCOthersFile = "C",
+  CSRCOthersFile = 'C',
   /** 投资者照片路径 */
-  InvestorPhoto = "P",
+  InvestorPhoto = 'P',
   /** 全结经纪公司上传文件路径 */
-  CSRCData = "R",
+  CSRCData = 'R',
   /** 开户密码录入方式 */
-  InvestorPwdModel = "I",
+  InvestorPwdModel = 'I',
   /** 投资者中金所结算文件下载路径 */
-  CFFEXInvestorSettleFile = "F",
+  CFFEXInvestorSettleFile = 'F',
   /** 投资者代码编码方式 */
-  InvestorIDType = "a",
+  InvestorIDType = 'a',
   /** 休眠户最高权益 */
-  FreezeMaxReMain = "r",
+  FreezeMaxReMain = 'r',
   /** 手续费相关操作实时上场开关 */
-  IsSync = "A",
+  IsSync = 'A',
   /** 解除开仓权限限制 */
-  RelieveOpenLimit = "O",
+  RelieveOpenLimit = 'O',
   /** 是否规范用户才能休眠 */
-  IsStandardFreeze = "X",
+  IsStandardFreeze = 'X',
   /** 郑商所是否开放所有品种套保交易 */
-  CZCENormalProductHedge = "B",
-}
+  CZCENormalProductHedge = 'B',
+};
 
 /** 交易系统参数代码类型 */
 export enum TradeParamIDType {
   /** 系统加密算法 */
-  EncryptionStandard = "E",
+  EncryptionStandard = 'E',
   /** 系统风险算法 */
-  RiskMode = "R",
+  RiskMode = 'R',
   /** 系统风险算法是否全局 0-否 1-是 */
-  RiskModeGlobal = "G",
+  RiskModeGlobal = 'G',
   /** 密码加密算法 */
-  modeEncode = "P",
+  modeEncode = 'P',
   /** 价格小数位数参数 */
-  tickMode = "T",
+  tickMode = 'T',
   /** 用户最大会话数 */
-  SingleUserSessionMaxNum = "S",
+  SingleUserSessionMaxNum = 'S',
   /** 最大连续登录失败数 */
-  LoginFailMaxNum = "L",
+  LoginFailMaxNum = 'L',
   /** 是否强制认证 */
-  IsAuthForce = "A",
+  IsAuthForce = 'A',
   /** 是否冻结证券持仓 */
-  IsPosiFreeze = "F",
+  IsPosiFreeze = 'F',
   /** 是否限仓 */
-  IsPosiLimit = "M",
+  IsPosiLimit = 'M',
   /** 郑商所询价时间间隔 */
-  ForQuoteTimeInterval = "Q",
+  ForQuoteTimeInterval = 'Q',
   /** 是否期货限仓 */
-  IsFuturePosiLimit = "B",
+  IsFuturePosiLimit = 'B',
   /** 是否期货下单频率限制 */
-  IsFutureOrderFreq = "C",
+  IsFutureOrderFreq = 'C',
   /** 行权冻结是否计算盈利 */
-  IsExecOrderProfit = "H",
+  IsExecOrderProfit = 'H',
   /** 银期开户是否验证开户银行卡号是否是预留银行账户 */
-  IsCheckBankAcc = "I",
+  IsCheckBankAcc = 'I',
   /** 弱密码最后修改日期 */
-  PasswordDeadLine = "J",
+  PasswordDeadLine = 'J',
   /** 强密码校验 */
-  IsStrongPassword = "K",
+  IsStrongPassword = 'K',
   /** 自有资金质押比 */
-  BalanceMorgage = "a",
+  BalanceMorgage = 'a',
   /** 最小密码长度 */
-  MinPwdLen = "O",
+  MinPwdLen = 'O',
   /** IP当日最大登陆失败次数 */
-  LoginFailMaxNumForIP = "U",
+  LoginFailMaxNumForIP = 'U',
   /** 密码有效期 */
-  PasswordPeriod = "V",
-}
+  PasswordPeriod = 'V',
+};
 
 /** 文件标识类型 */
 export enum FileIDType {
   /** 资金数据 */
-  SettlementFund = "F",
+  SettlementFund = 'F',
   /** 成交数据 */
-  Trade = "T",
+  Trade = 'T',
   /** 投资者持仓数据 */
-  InvestorPosition = "P",
+  InvestorPosition = 'P',
   /** 投资者分项资金数据 */
-  SubEntryFund = "O",
+  SubEntryFund = 'O',
   /** 组合持仓数据 */
-  CZCECombinationPos = "C",
+  CZCECombinationPos = 'C',
   /** 上报保证金监控中心数据 */
-  CSRCData = "R",
+  CSRCData = 'R',
   /** 郑商所平仓了结数据 */
-  CZCEClose = "L",
+  CZCEClose = 'L',
   /** 郑商所非平仓了结数据 */
-  CZCENoClose = "N",
+  CZCENoClose = 'N',
   /** 持仓明细数据 */
-  PositionDtl = "D",
+  PositionDtl = 'D',
   /** 期权执行文件 */
-  OptionStrike = "S",
+  OptionStrike = 'S',
   /** 结算价比对文件 */
-  SettlementPriceComparison = "M",
+  SettlementPriceComparison = 'M',
   /** 上期所非持仓变动明细 */
-  NonTradePosChange = "B",
-}
+  NonTradePosChange = 'B',
+};
 
 /** 文件上传类型类型 */
-export enum FileType {
+export enum FileTypeType {
   /** 结算 */
-  Settlement = "0",
+  Settlement = '0',
   /** 核对 */
-  Check = "1",
-}
+  Check = '1',
+};
 
 /** 文件格式类型 */
 export enum FileFormatType {
   /** 文本文件(.txt) */
-  Txt = "0",
+  Txt = '0',
   /** 压缩文件(.zip) */
-  Zip = "1",
+  Zip = '1',
   /** DBF文件(.dbf) */
-  DBF = "2",
-}
+  DBF = '2',
+};
 
 /** 文件状态类型 */
 export enum FileUploadStatusType {
   /** 上传成功 */
-  SucceedUpload = "1",
+  SucceedUpload = '1',
   /** 上传失败 */
-  FailedUpload = "2",
+  FailedUpload = '2',
   /** 导入成功 */
-  SucceedLoad = "3",
+  SucceedLoad = '3',
   /** 导入部分成功 */
-  PartSucceedLoad = "4",
+  PartSucceedLoad = '4',
   /** 导入失败 */
-  FailedLoad = "5",
-}
+  FailedLoad = '5',
+};
 
 /** 移仓方向类型 */
 export enum TransferDirectionType {
   /** 移出 */
-  Out = "0",
+  Out = '0',
   /** 移入 */
-  In = "1",
-}
+  In = '1',
+};
 
 /** 特殊的创建规则类型 */
 export enum SpecialCreateRuleType {
   /** 没有特殊创建规则 */
-  NoSpecialRule = "0",
+  NoSpecialRule = '0',
   /** 不包含春节 */
-  NoSpringFestival = "1",
-}
+  NoSpringFestival = '1',
+};
 
 /** 挂牌基准价类型类型 */
-export enum BasisPriceType {
+export enum BasisPriceTypeType {
   /** 上一合约结算价 */
-  LastSettlement = "1",
+  LastSettlement = '1',
   /** 上一合约收盘价 */
-  LaseClose = "2",
-}
+  LaseClose = '2',
+};
 
 /** 产品生命周期状态类型 */
 export enum ProductLifePhaseType {
   /** 活跃 */
-  Active = "1",
+  Active = '1',
   /** 不活跃 */
-  NonActive = "2",
+  NonActive = '2',
   /** 注销 */
-  Canceled = "3",
-}
+  Canceled = '3',
+};
 
 /** 交割方式类型 */
 export enum DeliveryModeType {
   /** 现金交割 */
-  CashDeliv = "1",
+  CashDeliv = '1',
   /** 实物交割 */
-  CommodityDeliv = "2",
-}
+  CommodityDeliv = '2',
+};
 
 /** 出入金类型类型 */
-export enum FundIOType {
+export enum FundIOTypeType {
   /** 出入金 */
-  FundIO = "1",
+  FundIO = '1',
   /** 银期转帐 */
-  Transfer = "2",
+  Transfer = '2',
   /** 银期换汇 */
-  SwapCurrency = "3",
-}
+  SwapCurrency = '3',
+};
 
 /** 资金类型类型 */
-export enum FundType {
+export enum FundTypeType {
   /** 银行存款 */
-  Deposite = "1",
+  Deposite = '1',
   /** 分项资金 */
-  ItemFund = "2",
+  ItemFund = '2',
   /** 公司调整 */
-  Company = "3",
+  Company = '3',
   /** 资金内转 */
-  InnerTransfer = "4",
-}
+  InnerTransfer = '4',
+};
 
 /** 出入金方向类型 */
 export enum FundDirectionType {
   /** 入金 */
-  In = "1",
+  In = '1',
   /** 出金 */
-  Out = "2",
-}
+  Out = '2',
+};
 
 /** 资金状态类型 */
 export enum FundStatusType {
   /** 已录入 */
-  Record = "1",
+  Record = '1',
   /** 已复核 */
-  Check = "2",
+  Check = '2',
   /** 已冲销 */
-  Charge = "3",
-}
+  Charge = '3',
+};
 
 /** 发布状态类型 */
 export enum PublishStatusType {
   /** 未发布 */
-  None = "1",
+  None = '1',
   /** 正在发布 */
-  Publishing = "2",
+  Publishing = '2',
   /** 已发布 */
-  Published = "3",
-}
+  Published = '3',
+};
 
 /** 系统状态类型 */
 export enum SystemStatusType {
   /** 不活跃 */
-  NonActive = "1",
+  NonActive = '1',
   /** 启动 */
-  Startup = "2",
+  Startup = '2',
   /** 交易开始初始化 */
-  Initialize = "3",
+  Initialize = '3',
   /** 交易完成初始化 */
-  Initialized = "4",
+  Initialized = '4',
   /** 收市开始 */
-  Close = "5",
+  Close = '5',
   /** 收市完成 */
-  Closed = "6",
+  Closed = '6',
   /** 结算 */
-  Settlement = "7",
-}
+  Settlement = '7',
+};
 
 /** 结算状态类型 */
 export enum SettlementStatusType {
   /** 初始 */
-  Initialize = "0",
+  Initialize = '0',
   /** 结算中 */
-  Settlementing = "1",
+  Settlementing = '1',
   /** 已结算 */
-  Settlemented = "2",
+  Settlemented = '2',
   /** 结算完成 */
-  Finished = "3",
-}
+  Finished = '3',
+};
 
 /** 投资者类型类型 */
-export enum InvestorType {
+export enum InvestorTypeType {
   /** 自然人 */
-  Person = "0",
+  Person = '0',
   /** 法人 */
-  Company = "1",
+  Company = '1',
   /** 投资基金 */
-  Fund = "2",
+  Fund = '2',
   /** 特殊法人 */
-  SpecialOrgan = "3",
+  SpecialOrgan = '3',
   /** 资管户 */
-  Asset = "4",
-}
+  Asset = '4',
+};
 
 /** 经纪公司类型类型 */
-export enum BrokerType {
+export enum BrokerTypeType {
   /** 交易会员 */
-  Trade = "0",
+  Trade = '0',
   /** 交易结算会员 */
-  TradeSettle = "1",
-}
+  TradeSettle = '1',
+};
 
 /** 风险等级类型 */
 export enum RiskLevelType {
   /** 低风险客户 */
-  Low = "1",
+  Low = '1',
   /** 普通客户 */
-  Normal = "2",
+  Normal = '2',
   /** 关注客户 */
-  Focus = "3",
+  Focus = '3',
   /** 风险客户 */
-  Risk = "4",
-}
+  Risk = '4',
+};
 
 /** 手续费收取方式类型 */
 export enum FeeAcceptStyleType {
   /** 按交易收取 */
-  ByTrade = "1",
+  ByTrade = '1',
   /** 按交割收取 */
-  ByDeliv = "2",
+  ByDeliv = '2',
   /** 不收 */
-  None = "3",
+  None = '3',
   /** 按指定手续费收取 */
-  FixFee = "4",
-}
+  FixFee = '4',
+};
 
 /** 密码类型类型 */
-export enum PasswordType {
+export enum PasswordTypeType {
   /** 交易密码 */
-  Trade = "1",
+  Trade = '1',
   /** 资金密码 */
-  Account = "2",
-}
+  Account = '2',
+};
 
 /** 盈亏算法类型 */
 export enum AlgorithmType {
   /** 浮盈浮亏都计算 */
-  All = "1",
+  All = '1',
   /** 浮盈不计，浮亏计 */
-  OnlyLost = "2",
+  OnlyLost = '2',
   /** 浮盈计，浮亏不计 */
-  OnlyGain = "3",
+  OnlyGain = '3',
   /** 浮盈浮亏都不计算 */
-  None = "4",
-}
+  None = '4',
+};
 
 /** 是否包含平仓盈利类型 */
 export enum IncludeCloseProfitType {
   /** 包含平仓盈利 */
-  Include = "0",
+  Include = '0',
   /** 不包含平仓盈利 */
-  NotInclude = "2",
-}
+  NotInclude = '2',
+};
 
 /** 是否受可提比例限制类型 */
 export enum AllWithoutTradeType {
   /** 无仓无成交不受可提比例限制 */
-  Enable = "0",
+  Enable = '0',
   /** 受可提比例限制 */
-  Disable = "2",
+  Disable = '2',
   /** 无仓不受可提比例限制 */
-  NoHoldEnable = "3",
-}
+  NoHoldEnable = '3',
+};
 
 /** 资金密码核对标志类型 */
 export enum FuturePwdFlagType {
   /** 不核对 */
-  UnCheck = "0",
+  UnCheck = '0',
   /** 核对 */
-  Check = "1",
-}
+  Check = '1',
+};
 
 /** 银期转账类型类型 */
-export enum TransferType {
+export enum TransferTypeType {
   /** 银行转期货 */
-  BankToFuture = "0",
+  BankToFuture = '0',
   /** 期货转银行 */
-  FutureToBank = "1",
-}
+  FutureToBank = '1',
+};
 
 /** 转账有效标志类型 */
 export enum TransferValidFlagType {
   /** 无效或失败 */
-  Invalid = "0",
+  Invalid = '0',
   /** 有效 */
-  Valid = "1",
+  Valid = '1',
   /** 冲正 */
-  Reverse = "2",
-}
+  Reverse = '2',
+};
 
 /** 事由类型 */
 export enum ReasonType {
   /** 错单 */
-  CD = "0",
+  CD = '0',
   /** 资金在途 */
-  ZT = "1",
+  ZT = '1',
   /** 其它 */
-  QT = "2",
-}
+  QT = '2',
+};
 
 /** 性别类型 */
 export enum SexType {
   /** 未知 */
-  None = "0",
+  None = '0',
   /** 男 */
-  Man = "1",
+  Man = '1',
   /** 女 */
-  Woman = "2",
-}
+  Woman = '2',
+};
 
 /** 用户类型类型 */
-export enum UserType {
+export enum UserTypeType {
   /** 投资者 */
-  Investor = "0",
+  Investor = '0',
   /** 操作员 */
-  Operator = "1",
+  Operator = '1',
   /** 管理员 */
-  SuperUser = "2",
-}
+  SuperUser = '2',
+};
 
 /** 费率类型类型 */
-export enum RateType {
+export enum RateTypeType {
   /** 保证金率 */
-  MarginRate = "2",
-}
+  MarginRate = '2',
+};
 
 /** 通知类型类型 */
-export enum NoteType {
+export enum NoteTypeType {
   /** 交易结算单 */
-  TradeSettleBill = "1",
+  TradeSettleBill = '1',
   /** 交易结算月报 */
-  TradeSettleMonth = "2",
+  TradeSettleMonth = '2',
   /** 追加保证金通知书 */
-  CallMarginNotes = "3",
+  CallMarginNotes = '3',
   /** 强行平仓通知书 */
-  ForceCloseNotes = "4",
+  ForceCloseNotes = '4',
   /** 成交通知书 */
-  TradeNotes = "5",
+  TradeNotes = '5',
   /** 交割通知书 */
-  DelivNotes = "6",
-}
+  DelivNotes = '6',
+};
 
 /** 结算单方式类型 */
 export enum SettlementStyleType {
   /** 逐日盯市 */
-  Day = "1",
+  Day = '1',
   /** 逐笔对冲 */
-  Volume = "2",
-}
+  Volume = '2',
+};
 
 /** 结算单类型类型 */
-export enum SettlementBillType {
+export enum SettlementBillTypeType {
   /** 日报 */
-  Day = "0",
+  Day = '0',
   /** 月报 */
-  Month = "1",
-}
+  Month = '1',
+};
 
 /** 客户权限类型类型 */
-export enum UserRightType {
+export enum UserRightTypeType {
   /** 登录 */
-  Logon = "1",
+  Logon = '1',
   /** 银期转帐 */
-  Transfer = "2",
+  Transfer = '2',
   /** 邮寄结算单 */
-  EMail = "3",
+  EMail = '3',
   /** 传真结算单 */
-  Fax = "4",
+  Fax = '4',
   /** 条件单 */
-  ConditionOrder = "5",
-}
+  ConditionOrder = '5',
+};
 
 /** 保证金价格类型类型 */
-export enum MarginPriceType {
+export enum MarginPriceTypeType {
   /** 昨结算价 */
-  PreSettlementPrice = "1",
+  PreSettlementPrice = '1',
   /** 最新价 */
-  SettlementPrice = "2",
+  SettlementPrice = '2',
   /** 成交均价 */
-  AveragePrice = "3",
+  AveragePrice = '3',
   /** 开仓价 */
-  OpenPrice = "4",
-}
+  OpenPrice = '4',
+};
 
 /** 结算单生成状态类型 */
 export enum BillGenStatusType {
   /** 未生成 */
-  None = "0",
+  None = '0',
   /** 生成中 */
-  NoGenerated = "1",
+  NoGenerated = '1',
   /** 已生成 */
-  Generated = "2",
-}
+  Generated = '2',
+};
 
 /** 算法类型类型 */
-export enum AlgoType {
+export enum AlgoTypeType {
   /** 持仓处理算法 */
-  HandlePositionAlgo = "1",
+  HandlePositionAlgo = '1',
   /** 寻找保证金率算法 */
-  FindMarginRateAlgo = "2",
-}
+  FindMarginRateAlgo = '2',
+};
 
 /** 持仓处理算法编号类型 */
 export enum HandlePositionAlgoIDType {
   /** 基本 */
-  Base = "1",
+  Base = '1',
   /** 大连商品交易所 */
-  DCE = "2",
+  DCE = '2',
   /** 郑州商品交易所 */
-  CZCE = "3",
-}
+  CZCE = '3',
+};
 
 /** 寻找保证金率算法编号类型 */
 export enum FindMarginRateAlgoIDType {
   /** 基本 */
-  Base = "1",
+  Base = '1',
   /** 大连商品交易所 */
-  DCE = "2",
+  DCE = '2',
   /** 郑州商品交易所 */
-  CZCE = "3",
-}
+  CZCE = '3',
+};
 
 /** 资金处理算法编号类型 */
 export enum HandleTradingAccountAlgoIDType {
   /** 基本 */
-  Base = "1",
+  Base = '1',
   /** 大连商品交易所 */
-  DCE = "2",
+  DCE = '2',
   /** 郑州商品交易所 */
-  CZCE = "3",
-}
+  CZCE = '3',
+};
 
 /** 联系人类型类型 */
-export enum PersonType {
+export enum PersonTypeType {
   /** 指定下单人 */
-  Order = "1",
+  Order = '1',
   /** 开户授权人 */
-  Open = "2",
+  Open = '2',
   /** 资金调拨人 */
-  Fund = "3",
+  Fund = '3',
   /** 结算单确认人 */
-  Settlement = "4",
+  Settlement = '4',
   /** 法人 */
-  Company = "5",
+  Company = '5',
   /** 法人代表 */
-  Corporation = "6",
+  Corporation = '6',
   /** 投资者联系人 */
-  LinkMan = "7",
+  LinkMan = '7',
   /** 分户管理资产负责人 */
-  Ledger = "8",
+  Ledger = '8',
   /** 托（保）管人 */
-  Trustee = "9",
+  Trustee = '9',
   /** 托（保）管机构法人代表 */
-  TrusteeCorporation = "A",
+  TrusteeCorporation = 'A',
   /** 托（保）管机构开户授权人 */
-  TrusteeOpen = "B",
+  TrusteeOpen = 'B',
   /** 托（保）管机构联系人 */
-  TrusteeContact = "C",
+  TrusteeContact = 'C',
   /** 境外自然人参考证件 */
-  ForeignerRefer = "D",
+  ForeignerRefer = 'D',
   /** 法人代表参考证件 */
-  CorporationRefer = "E",
-}
+  CorporationRefer = 'E',
+};
 
 /** 查询范围类型 */
 export enum QueryInvestorRangeType {
   /** 所有 */
-  All = "1",
+  All = '1',
   /** 查询分类 */
-  Group = "2",
+  Group = '2',
   /** 单一投资者 */
-  Single = "3",
-}
+  Single = '3',
+};
 
 /** 投资者风险状态类型 */
 export enum InvestorRiskStatusType {
   /** 正常 */
-  Normal = "1",
+  Normal = '1',
   /** 警告 */
-  Warn = "2",
+  Warn = '2',
   /** 追保 */
-  Call = "3",
+  Call = '3',
   /** 强平 */
-  Force = "4",
+  Force = '4',
   /** 异常 */
-  Exception = "5",
-}
+  Exception = '5',
+};
 
 /** 用户事件类型类型 */
-export enum UserEventType {
+export enum UserEventTypeType {
   /** 登录 */
-  Login = "1",
+  Login = '1',
   /** 登出 */
-  Logout = "2",
-  /** 交易成功 */
-  Trading = "3",
-  /** 交易失败 */
-  TradingError = "4",
+  Logout = '2',
+  /** CTP校验通过 */
+  Trading = '3',
+  /** CTP校验失败 */
+  TradingError = '4',
   /** 修改密码 */
-  UpdatePassword = "5",
+  UpdatePassword = '5',
   /** 客户端认证 */
-  Authenticate = "6",
+  Authenticate = '6',
   /** 终端信息上报 */
-  SubmitSysInfo = "7",
+  SubmitSysInfo = '7',
   /** 转账 */
-  Transfer = "8",
+  Transfer = '8',
   /** 其他 */
-  Other = "9",
-}
+  Other = '9',
+};
 
 /** 平仓方式类型 */
 export enum CloseStyleType {
   /** 先开先平 */
-  Close = "0",
+  Close = '0',
   /** 先平今再平昨 */
-  CloseToday = "1",
-}
-
-/** 统计方式类型 */
-export enum StatModeType {
-  /** ---- */
-  Non = "0",
-  /** 按合约统计 */
-  Instrument = "1",
-  /** 按产品统计 */
-  Product = "2",
-  /** 按投资者统计 */
-  Investor = "3",
-}
+  CloseToday = '1',
+};
 
 /** 预埋单状态类型 */
 export enum ParkedOrderStatusType {
   /** 未发送 */
-  NotSend = "1",
+  NotSend = '1',
   /** 已发送 */
-  Send = "2",
+  Send = '2',
   /** 已删除 */
-  Deleted = "3",
-}
+  Deleted = '3',
+};
 
 /** 处理状态类型 */
 export enum VirDealStatusType {
   /** 正在处理 */
-  Dealing = "1",
+  Dealing = '1',
   /** 处理成功 */
-  DeaclSucceed = "2",
-}
+  DeaclSucceed = '2',
+};
 
 /** 原有系统代码类型 */
 export enum OrgSystemIDType {
   /** 综合交易平台 */
-  Standard = "0",
+  Standard = '0',
   /** 易盛系统 */
-  ESunny = "1",
+  ESunny = '1',
   /** 金仕达V6系统 */
-  KingStarV6 = "2",
-}
+  KingStarV6 = '2',
+};
 
 /** 交易状态类型 */
 export enum VirTradeStatusType {
   /** 正常处理中 */
-  NaturalDeal = "0",
+  NaturalDeal = '0',
   /** 成功结束 */
-  SucceedEnd = "1",
+  SucceedEnd = '1',
   /** 失败结束 */
-  FailedEND = "2",
+  FailedEND = '2',
   /** 异常中 */
-  Exception = "3",
+  Exception = '3',
   /** 已人工异常处理 */
-  ManualDeal = "4",
+  ManualDeal = '4',
   /** 通讯异常 ，请人工处理 */
-  MesException = "5",
+  MesException = '5',
   /** 系统出错，请人工处理 */
-  SysException = "6",
-}
+  SysException = '6',
+};
 
 /** 银行帐户类型类型 */
-export enum VirBankAccType {
+export enum VirBankAccTypeType {
   /** 存折 */
-  BankBook = "1",
+  BankBook = '1',
   /** 储蓄卡 */
-  BankCard = "2",
+  BankCard = '2',
   /** 信用卡 */
-  CreditCard = "3",
-}
+  CreditCard = '3',
+};
 
 /** 银行帐户类型类型 */
 export enum VirementStatusType {
   /** 正常 */
-  Natural = "0",
+  Natural = '0',
   /** 销户 */
-  Canceled = "9",
-}
+  Canceled = '9',
+};
 
 /** 有效标志类型 */
 export enum VirementAvailAbilityType {
   /** 未确认 */
-  NoAvailAbility = "0",
+  NoAvailAbility = '0',
   /** 有效 */
-  AvailAbility = "1",
+  AvailAbility = '1',
   /** 冲正 */
-  Repeal = "2",
-}
+  Repeal = '2',
+};
 
 /** 交易代码类型 */
 export enum VirementTradeCodeType {
   /** 银行发起银行资金转期货 */
-  BankBankToFuture = "\u8E71",
+  BankBankToFuture = '102001',
   /** 银行发起期货资金转银行 */
-  BankFutureToBank = "\u8E72",
+  BankFutureToBank = '102002',
   /** 期货发起银行资金转期货 */
-  FutureBankToFuture = "\u1511",
+  FutureBankToFuture = '202001',
   /** 期货发起期货资金转银行 */
-  FutureFutureToBank = "\u1512",
-}
+  FutureFutureToBank = '202002',
+};
 
 /** Aml生成方式类型 */
 export enum AMLGenStatusType {
   /** 程序生成 */
-  Program = "0",
+  Program = '0',
   /** 人工生成 */
-  HandWork = "1",
-}
+  HandWork = '1',
+};
 
 /** 动态密钥类别(保证金监管)类型 */
 export enum CFMMCKeyKindType {
   /** 主动请求更新 */
-  REQUEST = "R",
+  REQUEST = 'R',
   /** CFMMC自动更新 */
-  AUTO = "A",
+  AUTO = 'A',
   /** CFMMC手动更新 */
-  MANUAL = "M",
-}
+  MANUAL = 'M',
+};
 
 /** 证件类型类型 */
-export enum CertificationType {
+export enum CertificationTypeType {
   /** 身份证 */
-  IDCard = "0",
+  IDCard = '0',
   /** 护照 */
-  Passport = "1",
+  Passport = '1',
   /** 军官证 */
-  OfficerIDCard = "2",
+  OfficerIDCard = '2',
   /** 士兵证 */
-  SoldierIDCard = "3",
+  SoldierIDCard = '3',
   /** 回乡证 */
-  HomeComingCard = "4",
+  HomeComingCard = '4',
   /** 户口簿 */
-  HouseholdRegister = "5",
+  HouseholdRegister = '5',
   /** 营业执照号 */
-  LicenseNo = "6",
+  LicenseNo = '6',
   /** 组织机构代码证 */
-  InstitutionCodeCard = "7",
+  InstitutionCodeCard = '7',
   /** 临时营业执照号 */
-  TempLicenseNo = "8",
+  TempLicenseNo = '8',
   /** 民办非企业登记证书 */
-  NoEnterpriseLicenseNo = "9",
+  NoEnterpriseLicenseNo = '9',
   /** 其他证件 */
-  OtherCard = "x",
+  OtherCard = 'x',
   /** 主管部门批文 */
-  SuperDepAgree = "a",
-}
+  SuperDepAgree = 'a',
+};
 
 /** 文件业务功能类型 */
 export enum FileBusinessCodeType {
   /** 其他 */
-  Others = "0",
+  Others = '0',
   /** 转账交易明细对账 */
-  TransferDetails = "1",
+  TransferDetails = '1',
   /** 客户账户状态对账 */
-  CustAccStatus = "2",
+  CustAccStatus = '2',
   /** 账户类交易明细对账 */
-  AccountTradeDetails = "3",
+  AccountTradeDetails = '3',
   /** 期货账户信息变更明细对账 */
-  FutureAccountChangeInfoDetails = "4",
+  FutureAccountChangeInfoDetails = '4',
   /** 客户资金台账余额明细对账 */
-  CustMoneyDetail = "5",
+  CustMoneyDetail = '5',
   /** 客户销户结息明细对账 */
-  CustCancelAccountInfo = "6",
+  CustCancelAccountInfo = '6',
   /** 客户资金余额对账结果 */
-  CustMoneyResult = "7",
+  CustMoneyResult = '7',
   /** 其它对账异常结果文件 */
-  OthersExceptionResult = "8",
+  OthersExceptionResult = '8',
   /** 客户结息净额明细 */
-  CustInterestNetMoneyDetails = "9",
+  CustInterestNetMoneyDetails = '9',
   /** 客户资金交收明细 */
-  CustMoneySendAndReceiveDetails = "a",
+  CustMoneySendAndReceiveDetails = 'a',
   /** 法人存管银行资金交收汇总 */
-  CorporationMoneyTotal = "b",
+  CorporationMoneyTotal = 'b',
   /** 主体间资金交收汇总 */
-  MainbodyMoneyTotal = "c",
+  MainbodyMoneyTotal = 'c',
   /** 总分平衡监管数据 */
-  MainPartMonitorData = "d",
+  MainPartMonitorData = 'd',
   /** 存管银行备付金余额 */
-  PreparationMoney = "e",
+  PreparationMoney = 'e',
   /** 协办存管银行资金监管数据 */
-  BankMoneyMonitorData = "f",
-}
+  BankMoneyMonitorData = 'f',
+};
 
 /** 汇钞标志类型 */
 export enum CashExchangeCodeType {
   /** 汇 */
-  Exchange = "1",
+  Exchange = '1',
   /** 钞 */
-  Cash = "2",
-}
+  Cash = '2',
+};
 
 /** 是或否标识类型 */
 export enum YesNoIndicatorType {
   /** 是 */
-  Yes = "0",
+  Yes = '0',
   /** 否 */
-  No = "1",
-}
+  No = '1',
+};
 
 /** 余额类型类型 */
-export enum BanlanceType {
+export enum BanlanceTypeType {
   /** 当前余额 */
-  CurrentMoney = "0",
+  CurrentMoney = '0',
   /** 可用余额 */
-  UsableMoney = "1",
+  UsableMoney = '1',
   /** 可取余额 */
-  FetchableMoney = "2",
+  FetchableMoney = '2',
   /** 冻结余额 */
-  FreezeMoney = "3",
-}
+  FreezeMoney = '3',
+};
 
 /** 性别类型 */
 export enum GenderType {
   /** 未知状态 */
-  Unknown = "0",
+  Unknown = '0',
   /** 男 */
-  Male = "1",
+  Male = '1',
   /** 女 */
-  Female = "2",
-}
+  Female = '2',
+};
 
 /** 费用支付标志类型 */
 export enum FeePayFlagType {
   /** 由受益方支付费用 */
-  BEN = "0",
+  BEN = '0',
   /** 由发送方支付费用 */
-  OUR = "1",
+  OUR = '1',
   /** 由发送方支付发起的费用，受益方支付接受的费用 */
-  SHA = "2",
-}
+  SHA = '2',
+};
 
 /** 密钥类型类型 */
-export enum PassWordKeyType {
+export enum PassWordKeyTypeType {
   /** 交换密钥 */
-  ExchangeKey = "0",
+  ExchangeKey = '0',
   /** 密码密钥 */
-  PassWordKey = "1",
+  PassWordKey = '1',
   /** MAC密钥 */
-  MACKey = "2",
+  MACKey = '2',
   /** 报文密钥 */
-  MessageKey = "3",
-}
+  MessageKey = '3',
+};
 
 /** 密码类型类型 */
-export enum FBTPassWordType {
+export enum FBTPassWordTypeType {
   /** 查询 */
-  Query = "0",
+  Query = '0',
   /** 取款 */
-  Fetch = "1",
+  Fetch = '1',
   /** 转帐 */
-  Transfer = "2",
+  Transfer = '2',
   /** 交易 */
-  Trade = "3",
-}
+  Trade = '3',
+};
 
 /** 加密方式类型 */
 export enum FBTEncryModeType {
   /** 不加密 */
-  NoEncry = "0",
-  /** DES */
-  DES = "1",
-  /** 3DES */
-  DES3 = "2",
-}
+  NoEncry = '0',
+};
 
 /** 银行冲正标志类型 */
 export enum BankRepealFlagType {
   /** 银行无需自动冲正 */
-  BankNotNeedRepeal = "0",
+  BankNotNeedRepeal = '0',
   /** 银行待自动冲正 */
-  BankWaitingRepeal = "1",
+  BankWaitingRepeal = '1',
   /** 银行已自动冲正 */
-  BankBeenRepealed = "2",
-}
+  BankBeenRepealed = '2',
+};
 
 /** 期商冲正标志类型 */
 export enum BrokerRepealFlagType {
   /** 期商无需自动冲正 */
-  BrokerNotNeedRepeal = "0",
+  BrokerNotNeedRepeal = '0',
   /** 期商待自动冲正 */
-  BrokerWaitingRepeal = "1",
+  BrokerWaitingRepeal = '1',
   /** 期商已自动冲正 */
-  BrokerBeenRepealed = "2",
-}
+  BrokerBeenRepealed = '2',
+};
 
 /** 机构类别类型 */
-export enum InstitutionType {
+export enum InstitutionTypeType {
   /** 银行 */
-  Bank = "0",
+  Bank = '0',
   /** 期商 */
-  Future = "1",
+  Future = '1',
   /** 券商 */
-  Store = "2",
-}
+  Store = '2',
+};
 
 /** 最后分片标志类型 */
 export enum LastFragmentType {
   /** 是最后分片 */
-  Yes = "0",
+  Yes = '0',
   /** 不是最后分片 */
-  No = "1",
-}
+  No = '1',
+};
 
 /** 银行账户状态类型 */
 export enum BankAccStatusType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 冻结 */
-  Freeze = "1",
+  Freeze = '1',
   /** 挂失 */
-  ReportLoss = "2",
-}
+  ReportLoss = '2',
+};
 
 /** 资金账户状态类型 */
 export enum MoneyAccountStatusType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 销户 */
-  Cancel = "1",
-}
+  Cancel = '1',
+};
 
 /** 存管状态类型 */
 export enum ManageStatusType {
   /** 指定存管 */
-  Point = "0",
+  Point = '0',
   /** 预指定 */
-  PrePoint = "1",
+  PrePoint = '1',
   /** 撤销指定 */
-  CancelPoint = "2",
-}
+  CancelPoint = '2',
+};
 
 /** 应用系统类型类型 */
-export enum SystemType {
+export enum SystemTypeType {
   /** 银期转帐 */
-  FutureBankTransfer = "0",
+  FutureBankTransfer = '0',
   /** 银证转帐 */
-  StockBankTransfer = "1",
+  StockBankTransfer = '1',
   /** 第三方存管 */
-  TheThirdPartStore = "2",
-}
+  TheThirdPartStore = '2',
+};
 
 /** 银期转帐划转结果标志类型 */
 export enum TxnEndFlagType {
   /** 正常处理中 */
-  NormalProcessing = "0",
+  NormalProcessing = '0',
   /** 成功结束 */
-  Success = "1",
+  Success = '1',
   /** 失败结束 */
-  Failed = "2",
+  Failed = '2',
   /** 异常中 */
-  Abnormal = "3",
+  Abnormal = '3',
   /** 已人工异常处理 */
-  ManualProcessedForException = "4",
+  ManualProcessedForException = '4',
   /** 通讯异常 ，请人工处理 */
-  CommuFailedNeedManualProcess = "5",
+  CommuFailedNeedManualProcess = '5',
   /** 系统出错，请人工处理 */
-  SysErrorNeedManualProcess = "6",
-}
+  SysErrorNeedManualProcess = '6',
+};
 
 /** 银期转帐服务处理状态类型 */
 export enum ProcessStatusType {
   /** 未处理 */
-  NotProcess = "0",
+  NotProcess = '0',
   /** 开始处理 */
-  StartProcess = "1",
+  StartProcess = '1',
   /** 处理完成 */
-  Finished = "2",
-}
+  Finished = '2',
+};
 
 /** 客户类型类型 */
-export enum CustType {
+export enum CustTypeType {
   /** 自然人 */
-  Person = "0",
+  Person = '0',
   /** 机构户 */
-  Institution = "1",
-}
+  Institution = '1',
+};
 
 /** 银期转帐方向类型 */
 export enum FBTTransferDirectionType {
   /** 入金，银行转期货 */
-  FromBankToFuture = "1",
+  FromBankToFuture = '1',
   /** 出金，期货转银行 */
-  FromFutureToBank = "2",
-}
+  FromFutureToBank = '2',
+};
 
 /** 开销户类别类型 */
 export enum OpenOrDestroyType {
   /** 开户 */
-  Open = "1",
+  Open = '1',
   /** 销户 */
-  Destroy = "0",
-}
+  Destroy = '0',
+};
 
 /** 有效标志类型 */
 export enum AvailabilityFlagType {
   /** 未确认 */
-  Invalid = "0",
+  Invalid = '0',
   /** 有效 */
-  Valid = "1",
+  Valid = '1',
   /** 冲正 */
-  Repeal = "2",
-}
+  Repeal = '2',
+};
 
 /** 机构类型类型 */
-export enum OrganType {
+export enum OrganTypeType {
   /** 银行代理 */
-  Bank = "1",
+  Bank = '1',
   /** 交易前置 */
-  Future = "2",
+  Future = '2',
   /** 银期转帐平台管理 */
-  PlateForm = "9",
-}
+  PlateForm = '9',
+};
 
 /** 机构级别类型 */
 export enum OrganLevelType {
   /** 银行总行或期商总部 */
-  HeadQuarters = "1",
+  HeadQuarters = '1',
   /** 银行分中心或期货公司营业部 */
-  Branch = "2",
-}
+  Branch = '2',
+};
 
 /** 协议类型类型 */
 export enum ProtocalIDType {
   /** 期商协议 */
-  FutureProtocal = "0",
+  FutureProtocal = '0',
   /** 工行协议 */
-  ICBCProtocal = "1",
+  ICBCProtocal = '1',
   /** 农行协议 */
-  ABCProtocal = "2",
+  ABCProtocal = '2',
   /** 中国银行协议 */
-  CBCProtocal = "3",
+  CBCProtocal = '3',
   /** 建行协议 */
-  CCBProtocal = "4",
+  CCBProtocal = '4',
   /** 交行协议 */
-  BOCOMProtocal = "5",
+  BOCOMProtocal = '5',
   /** 银期转帐平台协议 */
-  FBTPlateFormProtocal = "X",
-}
+  FBTPlateFormProtocal = 'X',
+};
 
 /** 套接字连接方式类型 */
 export enum ConnectModeType {
   /** 短连接 */
-  ShortConnect = "0",
+  ShortConnect = '0',
   /** 长连接 */
-  LongConnect = "1",
-}
+  LongConnect = '1',
+};
 
 /** 套接字通信方式类型 */
 export enum SyncModeType {
   /** 异步 */
-  ASync = "0",
+  ASync = '0',
   /** 同步 */
-  Sync = "1",
-}
+  Sync = '1',
+};
 
 /** 银行帐号类型类型 */
-export enum BankAccType {
+export enum BankAccTypeType {
   /** 银行存折 */
-  BankBook = "1",
+  BankBook = '1',
   /** 储蓄卡 */
-  SavingCard = "2",
+  SavingCard = '2',
   /** 信用卡 */
-  CreditCard = "3",
-}
+  CreditCard = '3',
+};
 
 /** 期货公司帐号类型类型 */
-export enum FutureAccType {
+export enum FutureAccTypeType {
   /** 银行存折 */
-  BankBook = "1",
+  BankBook = '1',
   /** 储蓄卡 */
-  SavingCard = "2",
+  SavingCard = '2',
   /** 信用卡 */
-  CreditCard = "3",
-}
+  CreditCard = '3',
+};
 
 /** 接入机构状态类型 */
 export enum OrganStatusType {
   /** 启用 */
-  Ready = "0",
+  Ready = '0',
   /** 签到 */
-  CheckIn = "1",
+  CheckIn = '1',
   /** 签退 */
-  CheckOut = "2",
+  CheckOut = '2',
   /** 对帐文件到达 */
-  CheckFileArrived = "3",
+  CheckFileArrived = '3',
   /** 对帐 */
-  CheckDetail = "4",
+  CheckDetail = '4',
   /** 日终清理 */
-  DayEndClean = "5",
+  DayEndClean = '5',
   /** 注销 */
-  Invalid = "9",
-}
+  Invalid = '9',
+};
 
 /** 建行收费模式类型 */
 export enum CCBFeeModeType {
   /** 按金额扣收 */
-  ByAmount = "1",
+  ByAmount = '1',
   /** 按月扣收 */
-  ByMonth = "2",
-}
+  ByMonth = '2',
+};
 
 /** 通讯API类型类型 */
-export enum CommApiType {
+export enum CommApiTypeType {
   /** 客户端 */
-  Client = "1",
+  Client = '1',
   /** 服务端 */
-  Server = "2",
+  Server = '2',
   /** 交易系统的UserApi */
-  UserApi = "3",
-}
+  UserApi = '3',
+};
 
 /** 连接状态类型 */
 export enum LinkStatusType {
   /** 已经连接 */
-  Connected = "1",
+  Connected = '1',
   /** 没有连接 */
-  Disconnected = "2",
-}
+  Disconnected = '2',
+};
 
 /** 密码核对标志类型 */
 export enum PwdFlagType {
   /** 不核对 */
-  NoCheck = "0",
+  NoCheck = '0',
   /** 明文核对 */
-  BlankCheck = "1",
+  BlankCheck = '1',
   /** 密文核对 */
-  EncryptCheck = "2",
-}
+  EncryptCheck = '2',
+};
 
 /** 期货帐号类型类型 */
-export enum SecuAccType {
+export enum SecuAccTypeType {
   /** 资金帐号 */
-  AccountID = "1",
+  AccountID = '1',
   /** 资金卡号 */
-  CardID = "2",
+  CardID = '2',
   /** 上海股东帐号 */
-  SHStockholderID = "3",
+  SHStockholderID = '3',
   /** 深圳股东帐号 */
-  SZStockholderID = "4",
-}
+  SZStockholderID = '4',
+};
 
 /** 转账交易状态类型 */
 export enum TransferStatusType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 被冲正 */
-  Repealed = "1",
-}
+  Repealed = '1',
+};
 
 /** 发起方类型 */
-export enum SponsorType {
+export enum SponsorTypeType {
   /** 期商 */
-  Broker = "0",
+  Broker = '0',
   /** 银行 */
-  Bank = "1",
-}
+  Bank = '1',
+};
 
 /** 请求响应类别类型 */
-export enum ReqRspType {
+export enum ReqRspTypeType {
   /** 请求 */
-  Request = "0",
+  Request = '0',
   /** 响应 */
-  Response = "1",
-}
+  Response = '1',
+};
 
 /** 银期转帐用户事件类型类型 */
-export enum FBTUserEventType {
+export enum FBTUserEventTypeType {
   /** 签到 */
-  SignIn = "0",
+  SignIn = '0',
   /** 银行转期货 */
-  FromBankToFuture = "1",
+  FromBankToFuture = '1',
   /** 期货转银行 */
-  FromFutureToBank = "2",
+  FromFutureToBank = '2',
   /** 开户 */
-  OpenAccount = "3",
+  OpenAccount = '3',
   /** 销户 */
-  CancelAccount = "4",
+  CancelAccount = '4',
   /** 变更银行账户 */
-  ChangeAccount = "5",
+  ChangeAccount = '5',
   /** 冲正银行转期货 */
-  RepealFromBankToFuture = "6",
+  RepealFromBankToFuture = '6',
   /** 冲正期货转银行 */
-  RepealFromFutureToBank = "7",
+  RepealFromFutureToBank = '7',
   /** 查询银行账户 */
-  QueryBankAccount = "8",
+  QueryBankAccount = '8',
   /** 查询期货账户 */
-  QueryFutureAccount = "9",
+  QueryFutureAccount = '9',
   /** 签退 */
-  SignOut = "A",
+  SignOut = 'A',
   /** 密钥同步 */
-  SyncKey = "B",
+  SyncKey = 'B',
   /** 预约开户 */
-  ReserveOpenAccount = "C",
+  ReserveOpenAccount = 'C',
   /** 撤销预约开户 */
-  CancelReserveOpenAccount = "D",
+  CancelReserveOpenAccount = 'D',
   /** 预约开户确认 */
-  ReserveOpenAccountConfirm = "E",
+  ReserveOpenAccountConfirm = 'E',
   /** 其他 */
-  Other = "Z",
-}
+  Other = 'Z',
+};
 
 /** 记录操作类型类型 */
 export enum DBOperationType {
   /** 插入 */
-  Insert = "0",
+  Insert = '0',
   /** 更新 */
-  Update = "1",
+  Update = '1',
   /** 删除 */
-  Delete = "2",
-}
+  Delete = '2',
+};
 
 /** 同步标记类型 */
 export enum SyncFlagType {
   /** 已同步 */
-  Yes = "0",
+  Yes = '0',
   /** 未同步 */
-  No = "1",
-}
+  No = '1',
+};
 
 /** 同步类型类型 */
-export enum SyncType {
+export enum SyncTypeType {
   /** 一次同步 */
-  OneOffSync = "0",
+  OneOffSync = '0',
   /** 定时同步 */
-  TimerSync = "1",
+  TimerSync = '1',
   /** 定时完全同步 */
-  TimerFullSync = "2",
-}
+  TimerFullSync = '2',
+};
 
 /** 换汇方向类型 */
 export enum ExDirectionType {
   /** 结汇 */
-  Settlement = "0",
+  Settlement = '0',
   /** 售汇 */
-  Sale = "1",
-}
+  Sale = '1',
+};
 
 /** 换汇成功标志类型 */
 export enum FBEResultFlagType {
   /** 成功 */
-  Success = "0",
+  Success = '0',
   /** 账户余额不足 */
-  InsufficientBalance = "1",
+  InsufficientBalance = '1',
   /** 交易结果未知 */
-  UnknownTrading = "8",
+  UnknownTrading = '8',
   /** 失败 */
-  Fail = "x",
-}
+  Fail = 'x',
+};
 
 /** 换汇交易状态类型 */
 export enum FBEExchStatusType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 交易重发 */
-  ReExchange = "1",
-}
+  ReExchange = '1',
+};
 
 /** 换汇文件标志类型 */
 export enum FBEFileFlagType {
   /** 数据包 */
-  DataPackage = "0",
+  DataPackage = '0',
   /** 文件 */
-  File = "1",
-}
+  File = '1',
+};
 
 /** 换汇已交易标志类型 */
 export enum FBEAlreadyTradeType {
   /** 未交易 */
-  NotTrade = "0",
+  NotTrade = '0',
   /** 已交易 */
-  Trade = "1",
-}
+  Trade = '1',
+};
 
 /** 银期换汇用户事件类型类型 */
-export enum FBEUserEventType {
+export enum FBEUserEventTypeType {
   /** 签到 */
-  SignIn = "0",
+  SignIn = '0',
   /** 换汇 */
-  Exchange = "1",
+  Exchange = '1',
   /** 换汇重发 */
-  ReExchange = "2",
+  ReExchange = '2',
   /** 银行账户查询 */
-  QueryBankAccount = "3",
+  QueryBankAccount = '3',
   /** 换汇明细查询 */
-  QueryExchDetial = "4",
+  QueryExchDetial = '4',
   /** 换汇汇总查询 */
-  QueryExchSummary = "5",
+  QueryExchSummary = '5',
   /** 换汇汇率查询 */
-  QueryExchRate = "6",
+  QueryExchRate = '6',
   /** 对账文件通知 */
-  CheckBankAccount = "7",
+  CheckBankAccount = '7',
   /** 签退 */
-  SignOut = "8",
+  SignOut = '8',
   /** 其他 */
-  Other = "Z",
-}
+  Other = 'Z',
+};
 
 /** 换汇发送标志类型 */
 export enum FBEReqFlagType {
   /** 未处理 */
-  UnProcessed = "0",
+  UnProcessed = '0',
   /** 等待发送 */
-  WaitSend = "1",
+  WaitSend = '1',
   /** 发送成功 */
-  SendSuccess = "2",
+  SendSuccess = '2',
   /** 发送失败 */
-  SendFailed = "3",
+  SendFailed = '3',
   /** 等待重发 */
-  WaitReSend = "4",
-}
+  WaitReSend = '4',
+};
 
 /** 风险通知类型类型 */
 export enum NotifyClassType {
   /** 正常 */
-  NOERROR = "0",
+  NOERROR = '0',
   /** 警示 */
-  Warn = "1",
+  Warn = '1',
   /** 追保 */
-  Call = "2",
+  Call = '2',
   /** 强平 */
-  Force = "3",
+  Force = '3',
   /** 穿仓 */
-  CHUANCANG = "4",
+  CHUANCANG = '4',
   /** 异常 */
-  Exception = "5",
-}
+  Exception = '5',
+};
 
 /** 强平单类型类型 */
-export enum ForceCloseType {
+export enum ForceCloseTypeType {
   /** 手工强平 */
-  Manual = "0",
+  Manual = '0',
   /** 单一投资者辅助强平 */
-  Single = "1",
+  Single = '1',
   /** 批量投资者辅助强平 */
-  Group = "2",
-}
+  Group = '2',
+};
 
 /** 风险通知途径类型 */
 export enum RiskNotifyMethodType {
   /** 系统通知 */
-  System = "0",
+  System = '0',
   /** 短信通知 */
-  SMS = "1",
+  SMS = '1',
   /** 邮件通知 */
-  EMail = "2",
+  EMail = '2',
   /** 人工通知 */
-  Manual = "3",
-}
+  Manual = '3',
+};
 
 /** 风险通知状态类型 */
 export enum RiskNotifyStatusType {
   /** 未生成 */
-  NotGen = "0",
+  NotGen = '0',
   /** 已生成未发送 */
-  Generated = "1",
+  Generated = '1',
   /** 发送失败 */
-  SendError = "2",
+  SendError = '2',
   /** 已发送未接收 */
-  SendOk = "3",
+  SendOk = '3',
   /** 已接收未确认 */
-  Received = "4",
+  Received = '4',
   /** 已确认 */
-  Confirmed = "5",
-}
+  Confirmed = '5',
+};
 
 /** 风控用户操作事件类型 */
 export enum RiskUserEventType {
   /** 导出数据 */
-  ExportData = "0",
-}
+  ExportData = '0',
+};
 
 /** 条件单索引条件类型 */
-export enum ConditionalOrderSortType {
+export enum ConditionalOrderSortTypeType {
   /** 使用最新价升序 */
-  LastPriceAsc = "0",
+  LastPriceAsc = '0',
   /** 使用最新价降序 */
-  LastPriceDesc = "1",
+  LastPriceDesc = '1',
   /** 使用卖价升序 */
-  AskPriceAsc = "2",
+  AskPriceAsc = '2',
   /** 使用卖价降序 */
-  AskPriceDesc = "3",
+  AskPriceDesc = '3',
   /** 使用买价升序 */
-  BidPriceAsc = "4",
+  BidPriceAsc = '4',
   /** 使用买价降序 */
-  BidPriceDesc = "5",
-}
+  BidPriceDesc = '5',
+};
 
 /** 报送状态类型 */
-export enum SendType {
+export enum SendTypeType {
   /** 未发送 */
-  NoSend = "0",
+  NoSend = '0',
   /** 已发送 */
-  Sended = "1",
+  Sended = '1',
   /** 已生成 */
-  Generated = "2",
+  Generated = '2',
   /** 报送失败 */
-  SendFail = "3",
+  SendFail = '3',
   /** 接收成功 */
-  Success = "4",
+  Success = '4',
   /** 接收失败 */
-  Fail = "5",
+  Fail = '5',
   /** 取消报送 */
-  Cancel = "6",
-}
+  Cancel = '6',
+};
 
 /** 交易编码状态类型 */
 export enum ClientIDStatusType {
   /** 未申请 */
-  NoApply = "1",
+  NoApply = '1',
   /** 已提交申请 */
-  Submited = "2",
+  Submited = '2',
   /** 已发送申请 */
-  Sended = "3",
+  Sended = '3',
   /** 完成 */
-  Success = "4",
+  Success = '4',
   /** 拒绝 */
-  Refuse = "5",
+  Refuse = '5',
   /** 已撤销编码 */
-  Cancel = "6",
-}
+  Cancel = '6',
+};
 
 /** 特有信息类型类型 */
-export enum QuestionType {
+export enum QuestionTypeType {
   /** 单选 */
-  Radio = "1",
+  Radio = '1',
   /** 多选 */
-  Option = "2",
+  Option = '2',
   /** 填空 */
-  Blank = "3",
-}
+  Blank = '3',
+};
 
 /** 业务类型类型 */
-export enum BusinessType {
+export enum BusinessTypeType {
   /** 请求 */
-  Request = "1",
+  Request = '1',
   /** 应答 */
-  Response = "2",
+  Response = '2',
   /** 通知 */
-  Notice = "3",
-}
+  Notice = '3',
+};
 
 /** 监控中心返回码类型 */
 export enum CfmmcReturnCodeType {
   /** 成功 */
-  Success = "0",
+  Success = '0',
   /** 该客户已经有流程在处理中 */
-  Working = "1",
+  Working = '1',
   /** 监控中客户资料检查失败 */
-  InfoFail = "2",
+  InfoFail = '2',
   /** 监控中实名制检查失败 */
-  IDCardFail = "3",
+  IDCardFail = '3',
   /** 其他错误 */
-  OtherFail = "4",
-}
+  OtherFail = '4',
+};
 
 /** 客户类型类型 */
-export enum ClientType {
+export enum ClientTypeType {
   /** 所有 */
-  All = "0",
+  All = '0',
   /** 个人 */
-  Person = "1",
+  Person = '1',
   /** 单位 */
-  Company = "2",
+  Company = '2',
   /** 其他 */
-  Other = "3",
+  Other = '3',
   /** 特殊法人 */
-  SpecialOrgan = "4",
+  SpecialOrgan = '4',
   /** 资管户 */
-  Asset = "5",
-}
+  Asset = '5',
+};
 
 /** 交易所编号类型 */
-export enum ExchangeIDType {
+export enum ExchangeIDTypeType {
   /** 上海期货交易所 */
-  SHFE = "S",
+  SHFE = 'S',
   /** 郑州商品交易所 */
-  CZCE = "Z",
+  CZCE = 'Z',
   /** 大连商品交易所 */
-  DCE = "D",
+  DCE = 'D',
   /** 中国金融期货交易所 */
-  CFFEX = "J",
+  CFFEX = 'J',
   /** 上海国际能源交易中心股份有限公司 */
-  INE = "N",
-}
+  INE = 'N',
+};
 
 /** 交易编码类型类型 */
-export enum ExClientIDType {
+export enum ExClientIDTypeType {
   /** 套保 */
-  Hedge = "1",
+  Hedge = '1',
   /** 套利 */
-  Arbitrage = "2",
+  Arbitrage = '2',
   /** 投机 */
-  Speculation = "3",
-}
+  Speculation = '3',
+};
 
 /** 更新状态类型 */
 export enum UpdateFlagType {
   /** 未更新 */
-  NoUpdate = "0",
+  NoUpdate = '0',
   /** 更新全部信息成功 */
-  Success = "1",
+  Success = '1',
   /** 更新全部信息失败 */
-  Fail = "2",
+  Fail = '2',
   /** 更新交易编码成功 */
-  TCSuccess = "3",
+  TCSuccess = '3',
   /** 更新交易编码失败 */
-  TCFail = "4",
+  TCFail = '4',
   /** 已丢弃 */
-  Cancel = "5",
-}
+  Cancel = '5',
+};
 
 /** 申请动作类型 */
 export enum ApplyOperateIDType {
   /** 开户 */
-  OpenInvestor = "1",
+  OpenInvestor = '1',
   /** 修改身份信息 */
-  ModifyIDCard = "2",
+  ModifyIDCard = '2',
   /** 修改一般信息 */
-  ModifyNoIDCard = "3",
+  ModifyNoIDCard = '3',
   /** 申请交易编码 */
-  ApplyTradingCode = "4",
+  ApplyTradingCode = '4',
   /** 撤销交易编码 */
-  CancelTradingCode = "5",
+  CancelTradingCode = '5',
   /** 销户 */
-  CancelInvestor = "6",
+  CancelInvestor = '6',
   /** 账户休眠 */
-  FreezeAccount = "8",
+  FreezeAccount = '8',
   /** 激活休眠账户 */
-  ActiveFreezeAccount = "9",
-}
+  ActiveFreezeAccount = '9',
+};
 
 /** 申请状态类型 */
 export enum ApplyStatusIDType {
   /** 未补全 */
-  NoComplete = "1",
+  NoComplete = '1',
   /** 已提交 */
-  Submited = "2",
+  Submited = '2',
   /** 已审核 */
-  Checked = "3",
+  Checked = '3',
   /** 已拒绝 */
-  Refused = "4",
+  Refused = '4',
   /** 已删除 */
-  Deleted = "5",
-}
+  Deleted = '5',
+};
 
 /** 发送方式类型 */
 export enum SendMethodType {
   /** 文件发送 */
-  ByAPI = "1",
+  ByAPI = '1',
   /** 电子发送 */
-  ByFile = "2",
-}
+  ByFile = '2',
+};
 
 /** 操作方法类型 */
 export enum EventModeType {
   /** 增加 */
-  ADD = "1",
+  ADD = '1',
   /** 修改 */
-  UPDATE = "2",
+  UPDATE = '2',
   /** 删除 */
-  DELETE = "3",
+  DELETE = '3',
   /** 复核 */
-  CHECK = "4",
+  CHECK = '4',
   /** 复制 */
-  COPY = "5",
+  COPY = '5',
   /** 注销 */
-  CANCEL = "6",
+  CANCEL = '6',
   /** 冲销 */
-  Reverse = "7",
-}
+  Reverse = '7',
+};
 
 /** 统一开户申请自动发送类型 */
 export enum UOAAutoSendType {
   /** 自动发送并接收 */
-  ASR = "1",
+  ASR = '1',
   /** 自动发送，不自动接收 */
-  ASNR = "2",
+  ASNR = '2',
   /** 不自动发送，自动接收 */
-  NSAR = "3",
+  NSAR = '3',
   /** 不自动发送，也不自动接收 */
-  NSR = "4",
-}
+  NSR = '4',
+};
 
 /** 流程ID类型 */
 export enum FlowIDType {
   /** 投资者对应投资者组设置 */
-  InvestorGroupFlow = "1",
+  InvestorGroupFlow = '1',
   /** 投资者手续费率设置 */
-  InvestorRate = "2",
+  InvestorRate = '2',
   /** 投资者手续费率模板关系设置 */
-  InvestorCommRateModel = "3",
-}
+  InvestorCommRateModel = '3',
+};
 
 /** 复核级别类型 */
 export enum CheckLevelType {
   /** 零级复核 */
-  Zero = "0",
+  Zero = '0',
   /** 一级复核 */
-  One = "1",
+  One = '1',
   /** 二级复核 */
-  Two = "2",
-}
+  Two = '2',
+};
 
 /** 复核级别类型 */
 export enum CheckStatusType {
   /** 未复核 */
-  Init = "0",
+  Init = '0',
   /** 复核中 */
-  Checking = "1",
+  Checking = '1',
   /** 已复核 */
-  Checked = "2",
+  Checked = '2',
   /** 拒绝 */
-  Refuse = "3",
+  Refuse = '3',
   /** 作废 */
-  Cancel = "4",
-}
+  Cancel = '4',
+};
 
 /** 生效状态类型 */
 export enum UsedStatusType {
   /** 未生效 */
-  Unused = "0",
+  Unused = '0',
   /** 已生效 */
-  Used = "1",
+  Used = '1',
   /** 生效失败 */
-  Fail = "2",
-}
+  Fail = '2',
+};
 
 /** 账户来源类型 */
 export enum BankAcountOriginType {
   /** 手工录入 */
-  ByAccProperty = "0",
+  ByAccProperty = '0',
   /** 银期转账 */
-  ByFBTransfer = "1",
-}
+  ByFBTransfer = '1',
+};
 
 /** 结算单月报成交汇总方式类型 */
 export enum MonthBillTradeSumType {
   /** 同日同合约 */
-  ByInstrument = "0",
+  ByInstrument = '0',
   /** 同日同合约同价格 */
-  ByDayInsPrc = "1",
+  ByDayInsPrc = '1',
   /** 同合约 */
-  ByDayIns = "2",
-}
+  ByDayIns = '2',
+};
 
 /** 银期交易代码枚举类型 */
 export enum FBTTradeCodeEnumType {
   /** 银行发起银行转期货 */
-  BankLaunchBankToBroker = "\u8E71",
+  BankLaunchBankToBroker = '102001',
   /** 期货发起银行转期货 */
-  BrokerLaunchBankToBroker = "\u1511",
+  BrokerLaunchBankToBroker = '202001',
   /** 银行发起期货转银行 */
-  BankLaunchBrokerToBank = "\u8E72",
+  BankLaunchBrokerToBank = '102002',
   /** 期货发起期货转银行 */
-  BrokerLaunchBrokerToBank = "\u1512",
-}
+  BrokerLaunchBrokerToBank = '202002',
+};
 
 /** 动态令牌类型类型 */
-export enum OTPType {
+export enum OTPTypeType {
   /** 无动态令牌 */
-  NONE = "0",
+  NONE = '0',
   /** 时间令牌 */
-  TOTP = "1",
-}
+  TOTP = '1',
+};
 
 /** 动态令牌状态类型 */
 export enum OTPStatusType {
   /** 未使用 */
-  Unused = "0",
+  Unused = '0',
   /** 已使用 */
-  Used = "1",
+  Used = '1',
   /** 注销 */
-  Disuse = "2",
-}
+  Disuse = '2',
+};
 
 /** 经济公司用户类型类型 */
-export enum BrokerUserType {
+export enum BrokerUserTypeType {
   /** 投资者 */
-  Investor = "1",
+  Investor = '1',
   /** 操作员 */
-  BrokerUser = "2",
-}
+  BrokerUser = '2',
+};
 
 /** 期货类型类型 */
-export enum FutureType {
+export enum FutureTypeType {
   /** 商品期货 */
-  Commodity = "1",
+  Commodity = '1',
   /** 金融期货 */
-  Financial = "2",
-}
+  Financial = '2',
+};
 
 /** 资金管理操作类型类型 */
-export enum FundEventType {
+export enum FundEventTypeType {
   /** 转账限额 */
-  Restriction = "0",
+  Restriction = '0',
   /** 当日转账限额 */
-  TodayRestriction = "1",
+  TodayRestriction = '1',
   /** 期商流水 */
-  Transfer = "2",
+  Transfer = '2',
   /** 资金冻结 */
-  Credit = "3",
+  Credit = '3',
   /** 投资者可提资金比例 */
-  InvestorWithdrawAlm = "4",
+  InvestorWithdrawAlm = '4',
   /** 单个银行帐户转账限额 */
-  BankRestriction = "5",
+  BankRestriction = '5',
   /** 银期签约账户 */
-  Accountregister = "6",
+  Accountregister = '6',
   /** 交易所出入金 */
-  ExchangeFundIO = "7",
+  ExchangeFundIO = '7',
   /** 投资者出入金 */
-  InvestorFundIO = "8",
-}
+  InvestorFundIO = '8',
+};
 
-/**  资金账户来源类型*/
-export enum AccountSourceType {
+/** 资金账户来源类型 */
+export enum AccountSourceTypeType {
   /** 银期同步 */
-  FBTransfer = "0",
+  FBTransfer = '0',
   /** 手工录入 */
-  ManualEntry = "1",
-}
+  ManualEntry = '1',
+};
 
 /** 交易编码来源类型 */
-export enum CodeSourceType {
+export enum CodeSourceTypeType {
   /** 统一开户(已规范) */
-  UnifyAccount = "0",
+  UnifyAccount = '0',
   /** 手工录入(未规范) */
-  ManualEntry = "1",
-}
+  ManualEntry = '1',
+};
 
 /** 操作员范围类型 */
 export enum UserRangeType {
   /** 所有 */
-  All = "0",
+  All = '0',
   /** 单一操作员 */
-  Single = "1",
-}
+  Single = '1',
+};
 
 /** 交易统计表按客户统计方式类型 */
 export enum ByGroupType {
   /** 按投资者统计 */
-  Investor = "2",
+  Investor = '2',
   /** 按类统计 */
-  Group = "1",
-}
+  Group = '1',
+};
 
 /** 交易统计表按范围统计方式类型 */
 export enum TradeSumStatModeType {
   /** 按合约统计 */
-  Instrument = "1",
+  Instrument = '1',
   /** 按产品统计 */
-  Product = "2",
+  Product = '2',
   /** 按交易所统计 */
-  Exchange = "3",
-}
+  Exchange = '3',
+};
 
 /** 日期表达式设置类型类型 */
 export enum ExprSetModeType {
   /** 相对已有规则设置 */
-  Relative = "1",
+  Relative = '1',
   /** 典型设置 */
-  Typical = "2",
-}
+  Typical = '2',
+};
 
 /** 投资者范围类型 */
 export enum RateInvestorRangeType {
   /** 公司标准 */
-  All = "1",
+  All = '1',
   /** 模板 */
-  Model = "2",
+  Model = '2',
   /** 单一投资者 */
-  Single = "3",
-}
+  Single = '3',
+};
 
 /** 主次用系统数据同步状态类型 */
 export enum SyncDataStatusType {
   /** 未同步 */
-  Initialize = "0",
+  Initialize = '0',
   /** 同步中 */
-  Settlementing = "1",
+  Settlementing = '1',
   /** 已同步 */
-  Settlemented = "2",
-}
+  Settlemented = '2',
+};
 
 /** 成交来源类型 */
 export enum TradeSourceType {
   /** 来自交易所普通回报 */
-  NORMAL = "0",
+  NORMAL = '0',
   /** 来自查询 */
-  QUERY = "1",
-}
+  QUERY = '1',
+};
 
 /** 产品合约统计方式类型 */
 export enum FlexStatModeType {
   /** 产品统计 */
-  Product = "1",
+  Product = '1',
   /** 交易所统计 */
-  Exchange = "2",
+  Exchange = '2',
   /** 统计所有 */
-  All = "3",
-}
+  All = '3',
+};
 
 /** 投资者范围统计方式类型 */
 export enum ByInvestorRangeType {
   /** 属性统计 */
-  Property = "1",
+  Property = '1',
   /** 统计所有 */
-  All = "2",
-}
+  All = '2',
+};
 
 /** 投资者范围类型 */
 export enum PropertyInvestorRangeType {
   /** 所有 */
-  All = "1",
+  All = '1',
   /** 投资者属性 */
-  Property = "2",
+  Property = '2',
   /** 单一投资者 */
-  Single = "3",
-}
+  Single = '3',
+};
 
 /** 文件状态类型 */
 export enum FileStatusType {
   /** 未生成 */
-  NoCreate = "0",
+  NoCreate = '0',
   /** 已生成 */
-  Created = "1",
+  Created = '1',
   /** 生成失败 */
-  Failed = "2",
-}
+  Failed = '2',
+};
 
 /** 文件生成方式类型 */
 export enum FileGenStyleType {
   /** 下发 */
-  FileTransmit = "0",
+  FileTransmit = '0',
   /** 生成 */
-  FileGen = "1",
-}
+  FileGen = '1',
+};
 
 /** 系统日志操作方法类型 */
 export enum SysOperModeType {
   /** 增加 */
-  Add = "1",
+  Add = '1',
   /** 修改 */
-  Update = "2",
+  Update = '2',
   /** 删除 */
-  Delete = "3",
+  Delete = '3',
   /** 复制 */
-  Copy = "4",
+  Copy = '4',
   /** 激活 */
-  AcTive = "5",
+  AcTive = '5',
   /** 注销 */
-  CanCel = "6",
+  CanCel = '6',
   /** 重置 */
-  ReSet = "7",
-}
+  ReSet = '7',
+};
 
 /** 系统日志操作类型类型 */
-export enum SysOperType {
+export enum SysOperTypeType {
   /** 修改操作员密码 */
-  UpdatePassword = "0",
+  UpdatePassword = '0',
   /** 操作员组织架构关系 */
-  UserDepartment = "1",
+  UserDepartment = '1',
   /** 角色管理 */
-  RoleManager = "2",
+  RoleManager = '2',
   /** 角色功能设置 */
-  RoleFunction = "3",
+  RoleFunction = '3',
   /** 基础参数设置 */
-  BaseParam = "4",
+  BaseParam = '4',
   /** 设置操作员 */
-  SetUserID = "5",
+  SetUserID = '5',
   /** 用户角色设置 */
-  SetUserRole = "6",
+  SetUserRole = '6',
   /** 用户IP限制 */
-  UserIpRestriction = "7",
+  UserIpRestriction = '7',
   /** 组织架构管理 */
-  DepartmentManager = "8",
+  DepartmentManager = '8',
   /** 组织架构向查询分类复制 */
-  DepartmentCopy = "9",
+  DepartmentCopy = '9',
   /** 交易编码管理 */
-  Tradingcode = "A",
+  Tradingcode = 'A',
   /** 投资者状态维护 */
-  InvestorStatus = "B",
+  InvestorStatus = 'B',
   /** 投资者权限管理 */
-  InvestorAuthority = "C",
+  InvestorAuthority = 'C',
   /** 属性设置 */
-  PropertySet = "D",
+  PropertySet = 'D',
   /** 重置投资者密码 */
-  ReSetInvestorPasswd = "E",
+  ReSetInvestorPasswd = 'E',
   /** 投资者个性信息维护 */
-  InvestorPersonalityInfo = "F",
-}
+  InvestorPersonalityInfo = 'F',
+};
 
 /** 上报数据查询类型类型 */
-export enum CSRCDataQueyType {
+export enum CSRCDataQueyTypeType {
   /** 查询当前交易日报送的数据 */
-  Current = "0",
+  Current = '0',
   /** 查询历史报送的代理经纪公司的数据 */
-  History = "1",
-}
+  History = '1',
+};
 
 /** 休眠状态类型 */
 export enum FreezeStatusType {
   /** 活跃 */
-  Normal = "1",
+  Normal = '1',
   /** 休眠 */
-  Freeze = "0",
-}
+  Freeze = '0',
+};
 
 /** 规范状态类型 */
 export enum StandardStatusType {
   /** 已规范 */
-  Standard = "0",
+  Standard = '0',
   /** 未规范 */
-  NonStandard = "1",
-}
+  NonStandard = '1',
+};
 
 /** 配置类型类型 */
-export enum RightParamType {
+export enum RightParamTypeType {
   /** 休眠户 */
-  Freeze = "1",
+  Freeze = '1',
   /** 激活休眠户 */
-  FreezeActive = "2",
+  FreezeActive = '2',
   /** 开仓权限限制 */
-  OpenLimit = "3",
+  OpenLimit = '3',
   /** 解除开仓权限限制 */
-  RelieveOpenLimit = "4",
-}
+  RelieveOpenLimit = '4',
+};
 
 /** 反洗钱审核表数据状态类型 */
 export enum DataStatusType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 已删除 */
-  Deleted = "1",
-}
+  Deleted = '1',
+};
 
 /** 审核状态类型 */
 export enum AMLCheckStatusType {
   /** 未复核 */
-  Init = "0",
+  Init = '0',
   /** 复核中 */
-  Checking = "1",
+  Checking = '1',
   /** 已复核 */
-  Checked = "2",
+  Checked = '2',
   /** 拒绝上报 */
-  RefuseReport = "3",
-}
+  RefuseReport = '3',
+};
 
 /** 日期类型类型 */
-export enum AmlDateType {
+export enum AmlDateTypeType {
   /** 检查日期 */
-  DrawDay = "0",
+  DrawDay = '0',
   /** 发生日期 */
-  TouchDay = "1",
-}
+  TouchDay = '1',
+};
 
 /** 审核级别类型 */
 export enum AmlCheckLevelType {
   /** 零级审核 */
-  CheckLevel0 = "0",
+  CheckLevel0 = '0',
   /** 一级审核 */
-  CheckLevel1 = "1",
+  CheckLevel1 = '1',
   /** 二级审核 */
-  CheckLevel2 = "2",
+  CheckLevel2 = '2',
   /** 三级审核 */
-  CheckLevel3 = "3",
-}
-
-/** 导出文件类型类型 */
-export enum ExportFileType {
-  /** CSV */
-  CSV = "0",
-  /** Excel */
-  EXCEL = "1",
-  /** DBF */
-  DBF = "2",
-}
+  CheckLevel3 = '3',
+};
 
 /** 结算配置类型类型 */
-export enum SettleManagerType {
+export enum SettleManagerTypeType {
   /** 结算前准备 */
-  Before = "1",
+  Before = '1',
   /** 结算 */
-  Settlement = "2",
+  Settlement = '2',
   /** 结算后核对 */
-  After = "3",
+  After = '3',
   /** 结算后处理 */
-  Settlemented = "4",
-}
+  Settlemented = '4',
+};
 
 /** 结算配置等级类型 */
 export enum SettleManagerLevelType {
   /** 必要 */
-  Must = "1",
+  Must = '1',
   /** 警告 */
-  Alarm = "2",
+  Alarm = '2',
   /** 提示 */
-  Prompt = "3",
+  Prompt = '3',
   /** 不检查 */
-  Ignore = "4",
-}
+  Ignore = '4',
+};
 
 /** 模块分组类型 */
 export enum SettleManagerGroupType {
   /** 交易所核对 */
-  Exhcange = "1",
+  Exhcange = '1',
   /** 内部核对 */
-  ASP = "2",
+  ASP = '2',
   /** 上报数据核对 */
-  CSRC = "3",
-}
+  CSRC = '3',
+};
 
 /** 保值额度使用类型类型 */
-export enum LimitUseType {
+export enum LimitUseTypeType {
   /** 可重复使用 */
-  Repeatable = "1",
+  Repeatable = '1',
   /** 不可重复使用 */
-  Unrepeatable = "2",
-}
+  Unrepeatable = '2',
+};
 
 /** 数据来源类型 */
 export enum DataResourceType {
   /** 本系统 */
-  Settle = "1",
+  Settle = '1',
   /** 交易所 */
-  Exchange = "2",
+  Exchange = '2',
   /** 报送数据 */
-  CSRC = "3",
-}
+  CSRC = '3',
+};
 
 /** 保证金类型类型 */
-export enum MarginType {
+export enum MarginTypeType {
   /** 交易所保证金率 */
-  ExchMarginRate = "0",
+  ExchMarginRate = '0',
   /** 投资者保证金率 */
-  InstrMarginRate = "1",
+  InstrMarginRate = '1',
   /** 投资者交易保证金率 */
-  InstrMarginRateTrade = "2",
-}
+  InstrMarginRateTrade = '2',
+};
 
 /** 生效类型类型 */
-export enum ActiveType {
+export enum ActiveTypeType {
   /** 仅当日生效 */
-  Intraday = "1",
+  Intraday = '1',
   /** 长期生效 */
-  Long = "2",
-}
+  Long = '2',
+};
 
 /** 冲突保证金率类型类型 */
-export enum MarginRateType {
+export enum MarginRateTypeType {
   /** 交易所保证金率 */
-  Exchange = "1",
+  Exchange = '1',
   /** 投资者保证金率 */
-  Investor = "2",
+  Investor = '2',
   /** 投资者交易保证金率 */
-  InvestorTrade = "3",
-}
+  InvestorTrade = '3',
+};
 
 /** 备份数据状态类型 */
 export enum BackUpStatusType {
   /** 未生成备份数据 */
-  UnBak = "0",
+  UnBak = '0',
   /** 备份数据生成中 */
-  BakUp = "1",
+  BakUp = '1',
   /** 已生成备份数据 */
-  BakUped = "2",
+  BakUped = '2',
   /** 备份数据失败 */
-  BakFail = "3",
-}
+  BakFail = '3',
+};
 
 /** 结算初始化状态类型 */
 export enum InitSettlementType {
   /** 结算初始化未开始 */
-  UnInitialize = "0",
+  UnInitialize = '0',
   /** 结算初始化中 */
-  Initialize = "1",
+  Initialize = '1',
   /** 结算初始化完成 */
-  Initialized = "2",
-}
+  Initialized = '2',
+};
 
 /** 报表数据生成状态类型 */
 export enum ReportStatusType {
   /** 未生成报表数据 */
-  NoCreate = "0",
+  NoCreate = '0',
   /** 报表数据生成中 */
-  Create = "1",
+  Create = '1',
   /** 已生成报表数据 */
-  Created = "2",
+  Created = '2',
   /** 生成报表数据失败 */
-  CreateFail = "3",
-}
+  CreateFail = '3',
+};
 
 /** 数据归档状态类型 */
 export enum SaveStatusType {
   /** 归档未完成 */
-  UnSaveData = "0",
+  UnSaveData = '0',
   /** 归档完成 */
-  SaveDatad = "1",
-}
+  SaveDatad = '1',
+};
 
 /** 结算确认数据归档状态类型 */
 export enum SettArchiveStatusType {
   /** 未归档数据 */
-  UnArchived = "0",
+  UnArchived = '0',
   /** 数据归档中 */
-  Archiving = "1",
+  Archiving = '1',
   /** 已归档数据 */
-  Archived = "2",
+  Archived = '2',
   /** 归档数据失败 */
-  ArchiveFail = "3",
-}
+  ArchiveFail = '3',
+};
 
 /** CTP交易系统类型类型 */
-export enum CTPType {
+export enum CTPTypeType {
   /** 未知类型 */
-  Unkown = "0",
+  Unkown = '0',
   /** 主中心 */
-  MainCenter = "1",
+  MainCenter = '1',
   /** 备中心 */
-  BackUp = "2",
-}
+  BackUp = '2',
+};
 
 /** 平仓处理类型类型 */
-export enum CloseDealType {
+export enum CloseDealTypeType {
   /** 正常 */
-  Normal = "0",
+  Normal = '0',
   /** 投机平仓优先 */
-  SpecFirst = "1",
-}
+  SpecFirst = '1',
+};
 
 /** 货币质押资金可用范围类型 */
 export enum MortgageFundUseRangeType {
   /** 不能使用 */
-  None = "0",
+  None = '0',
   /** 用于保证金 */
-  Margin = "1",
+  Margin = '1',
   /** 用于手续费、盈亏、保证金 */
-  All = "2",
+  All = '2',
   /** 人民币方案3 */
-  CNY3 = "3",
-}
+  CNY3 = '3',
+};
 
 /** 特殊产品类型类型 */
-export enum SpecProductType {
+export enum SpecProductTypeType {
   /** 郑商所套保产品 */
-  CzceHedge = "1",
+  CzceHedge = '1',
   /** 货币质押产品 */
-  IneForeignCurrency = "2",
+  IneForeignCurrency = '2',
   /** 大连短线开平仓产品 */
-  DceOpenClose = "3",
-}
+  DceOpenClose = '3',
+};
 
 /** 货币质押类型类型 */
-export enum FundMortgageType {
+export enum FundMortgageTypeType {
   /** 质押 */
-  Mortgage = "1",
+  Mortgage = '1',
   /** 解质 */
-  Redemption = "2",
-}
+  Redemption = '2',
+};
 
 /** 投资者账户结算参数代码类型 */
 export enum AccountSettlementParamIDType {
   /** 基础保证金 */
-  BaseMargin = "1",
+  BaseMargin = '1',
   /** 最低权益标准 */
-  LowestInterest = "2",
-}
+  LowestInterest = '2',
+};
 
 /** 货币质押方向类型 */
 export enum FundMortDirectionType {
   /** 货币质入 */
-  In = "1",
+  In = '1',
   /** 货币质出 */
-  Out = "2",
-}
+  Out = '2',
+};
 
 /** 换汇类别类型 */
 export enum BusinessClassType {
   /** 盈利 */
-  Profit = "0",
+  Profit = '0',
   /** 亏损 */
-  Loss = "1",
+  Loss = '1',
   /** 其他 */
-  Other = "Z",
-}
+  Other = 'Z',
+};
 
 /** 换汇数据来源类型 */
-export enum SwapSourceType {
+export enum SwapSourceTypeType {
   /** 手工 */
-  Manual = "0",
+  Manual = '0',
   /** 自动生成 */
-  Automatic = "1",
-}
+  Automatic = '1',
+};
 
 /** 换汇类型类型 */
 export enum CurrExDirectionType {
   /** 结汇 */
-  Settlement = "0",
+  Settlement = '0',
   /** 售汇 */
-  Sale = "1",
-}
+  Sale = '1',
+};
 
 /** 申请状态类型 */
 export enum CurrencySwapStatusType {
   /** 已录入 */
-  Entry = "1",
+  Entry = '1',
   /** 已审核 */
-  Approve = "2",
+  Approve = '2',
   /** 已拒绝 */
-  Refuse = "3",
+  Refuse = '3',
   /** 已撤销 */
-  Revoke = "4",
+  Revoke = '4',
   /** 已发送 */
-  Send = "5",
+  Send = '5',
   /** 换汇成功 */
-  Success = "6",
+  Success = '6',
   /** 换汇失败 */
-  Failure = "7",
-}
+  Failure = '7',
+};
 
 /** 换汇发送标志类型 */
 export enum ReqFlagType {
   /** 未发送 */
-  NoSend = "0",
+  NoSend = '0',
   /** 发送成功 */
-  SendSuccess = "1",
+  SendSuccess = '1',
   /** 发送失败 */
-  SendFailed = "2",
+  SendFailed = '2',
   /** 等待重发 */
-  WaitReSend = "3",
-}
+  WaitReSend = '3',
+};
 
 /** 换汇返回成功标志类型 */
 export enum ResFlagType {
   /** 成功 */
-  Success = "0",
+  Success = '0',
   /** 账户余额不足 */
-  InsuffiCient = "1",
+  InsuffiCient = '1',
   /** 交易结果未知 */
-  UnKnown = "8",
-}
+  UnKnown = '8',
+};
 
 /** 修改状态类型 */
 export enum ExStatusType {
   /** 修改前 */
-  Before = "0",
+  Before = '0',
   /** 修改后 */
-  After = "1",
-}
+  After = '1',
+};
 
 /** 开户客户地域类型 */
 export enum ClientRegionType {
   /** 国内客户 */
-  Domestic = "1",
+  Domestic = '1',
   /** 港澳台客户 */
-  GMT = "2",
+  GMT = '2',
   /** 国外客户 */
-  Foreign = "3",
-}
+  Foreign = '3',
+};
 
 /** 是否有董事会类型 */
 export enum HasBoardType {
   /** 没有 */
-  No = "0",
+  No = '0',
   /** 有 */
-  Yes = "1",
-}
+  Yes = '1',
+};
 
 /** 启动模式类型 */
 export enum StartModeType {
   /** 正常 */
-  Normal = "1",
+  Normal = '1',
   /** 应急 */
-  Emerge = "2",
+  Emerge = '2',
   /** 恢复 */
-  Restore = "3",
-}
+  Restore = '3',
+};
 
 /** 模型类型类型 */
-export enum TemplateType {
+export enum TemplateTypeType {
   /** 全量 */
-  Full = "1",
+  Full = '1',
   /** 增量 */
-  Increment = "2",
+  Increment = '2',
   /** 备份 */
-  BackUp = "3",
-}
+  BackUp = '3',
+};
 
 /** 登录模式类型 */
 export enum LoginModeType {
   /** 交易 */
-  Trade = "0",
+  Trade = '0',
   /** 转账 */
-  Transfer = "1",
-}
+  Transfer = '1',
+};
 
 /** 日历提示类型类型 */
-export enum PromptType {
+export enum PromptTypeType {
   /** 合约上下市 */
-  Instrument = "1",
+  Instrument = '1',
   /** 保证金分段生效 */
-  Margin = "2",
-}
+  Margin = '2',
+};
 
 /** 是否有托管人类型 */
 export enum HasTrusteeType {
   /** 有 */
-  Yes = "1",
+  Yes = '1',
   /** 没有 */
-  No = "0",
-}
+  No = '0',
+};
 
 /** 机构类型类型 */
-export enum AmType {
+export enum AmTypeType {
   /** 银行 */
-  Bank = "1",
+  Bank = '1',
   /** 证券公司 */
-  Securities = "2",
+  Securities = '2',
   /** 基金公司 */
-  Fund = "3",
+  Fund = '3',
   /** 保险公司 */
-  Insurance = "4",
+  Insurance = '4',
   /** 信托公司 */
-  Trust = "5",
+  Trust = '5',
   /** 其他 */
-  Other = "9",
-}
+  Other = '9',
+};
 
 /** 出入金类型类型 */
-export enum CSRCFundIOType {
+export enum CSRCFundIOTypeType {
   /** 出入金 */
-  FundIO = "0",
+  FundIO = '0',
   /** 银期换汇 */
-  SwapCurrency = "1",
-}
+  SwapCurrency = '1',
+};
 
 /** 结算账户类型类型 */
-export enum CusAccountType {
+export enum CusAccountTypeType {
   /** 期货结算账户 */
-  Futures = "1",
+  Futures = '1',
   /** 纯期货资管业务下的资管结算账户 */
-  AssetmgrFuture = "2",
+  AssetmgrFuture = '2',
   /** 综合类资管业务下的期货资管托管账户 */
-  AssetmgrTrustee = "3",
+  AssetmgrTrustee = '3',
   /** 综合类资管业务下的资金中转账户 */
-  AssetmgrTransfer = "4",
-}
+  AssetmgrTransfer = '4',
+};
 
 /** 通知语言类型类型 */
-export enum LanguageType {
+export enum LanguageTypeType {
   /** 中文 */
-  Chinese = "1",
+  Chinese = '1',
   /** 英文 */
-  English = "2",
-}
+  English = '2',
+};
 
 /** 资产管理客户类型类型 */
-export enum AssetmgrClientType {
+export enum AssetmgrClientTypeType {
   /** 个人资管客户 */
-  Person = "1",
+  Person = '1',
   /** 单位资管客户 */
-  Organ = "2",
+  Organ = '2',
   /** 特殊单位资管客户 */
-  SpecialOrgan = "4",
-}
+  SpecialOrgan = '4',
+};
 
 /** 投资类型类型 */
-export enum AssetmgrType {
+export enum AssetmgrTypeType {
   /** 期货类 */
-  Futures = "3",
+  Futures = '3',
   /** 综合类 */
-  SpecialOrgan = "4",
-}
+  SpecialOrgan = '4',
+};
 
 /** 合约比较类型类型 */
-export enum CheckInstrType {
+export enum CheckInstrTypeType {
   /** 合约交易所不存在 */
-  HasExch = "0",
+  HasExch = '0',
   /** 合约本系统不存在 */
-  HasATP = "1",
+  HasATP = '1',
   /** 合约比较不一致 */
-  HasDiff = "2",
-}
+  HasDiff = '2',
+};
 
 /** 交割类型类型 */
-export enum DeliveryType {
+export enum DeliveryTypeType {
   /** 手工交割 */
-  HandDeliv = "1",
+  HandDeliv = '1',
   /** 到期交割 */
-  PersonDeliv = "2",
-}
+  PersonDeliv = '2',
+};
 
 /** 大额单边保证金算法类型 */
 export enum MaxMarginSideAlgorithmType {
   /** 不使用大额单边保证金算法 */
-  NO = "0",
+  NO = '0',
   /** 使用大额单边保证金算法 */
-  YES = "1",
-}
+  YES = '1',
+};
 
 /** 资产管理客户类型类型 */
-export enum DAClientType {
+export enum DAClientTypeType {
   /** 自然人 */
-  Person = "0",
+  Person = '0',
   /** 法人 */
-  Company = "1",
+  Company = '1',
   /** 其他 */
-  Other = "2",
-}
+  Other = '2',
+};
 
 /** 投资类型类型 */
-export enum UOAAssetmgrType {
+export enum UOAAssetmgrTypeType {
   /** 期货类 */
-  Futures = "1",
+  Futures = '1',
   /** 综合类 */
-  SpecialOrgan = "2",
-}
-
-/** 买卖方向类型 */
-export enum DirectionEnType {
-  /** Buy */
-  Buy = "0",
-  /** Sell */
-  Sell = "1",
-}
-
-/** 开平标志类型 */
-export enum OffsetFlagEnType {
-  /** Position Opening */
-  Open = "0",
-  /** Position Close */
-  Close = "1",
-  /** Forced Liquidation */
-  ForceClose = "2",
-  /** Close Today */
-  CloseToday = "3",
-  /** Close Prev. */
-  CloseYesterday = "4",
-  /** Forced Reduction */
-  ForceOff = "5",
-  /** Local Forced Liquidation */
-  LocalForceClose = "6",
-}
-
-/** 投机套保标志类型 */
-export enum HedgeFlagEnType {
-  /** Speculation */
-  Speculation = "1",
-  /** Arbitrage */
-  Arbitrage = "2",
-  /** Hedge */
-  Hedge = "3",
-}
-
-/** 出入金类型类型 */
-export enum FundIOTypeEnType {
-  /** Deposit/Withdrawal */
-  FundIO = "1",
-  /** Bank-Futures Transfer */
-  Transfer = "2",
-  /** Bank-Futures FX Exchange */
-  SwapCurrency = "3",
-}
-
-/** 资金类型类型 */
-export enum FundTypeEnType {
-  /** Bank Deposit */
-  Deposite = "1",
-  /** Payment/Fee */
-  ItemFund = "2",
-  /** Brokerage Adj */
-  Company = "3",
-  /** Internal Transfer */
-  InnerTransfer = "4",
-}
-
-/** 出入金方向类型 */
-export enum FundDirectionEnType {
-  /** Deposit */
-  In = "1",
-  /** Withdrawal */
-  Out = "2",
-}
-
-/** 货币质押方向类型 */
-export enum FundMortDirectionEnType {
-  /** Pledge */
-  In = "1",
-  /** Redemption */
-  Out = "2",
-}
+  SpecialOrgan = '2',
+};
 
 /** 期权类型类型 */
-export enum OptionsType {
+export enum OptionsTypeType {
   /** 看涨 */
-  CallOptions = "1",
+  CallOptions = '1',
   /** 看跌 */
-  PutOptions = "2",
-}
+  PutOptions = '2',
+};
 
 /** 执行方式类型 */
 export enum StrikeModeType {
   /** 欧式 */
-  Continental = "0",
+  Continental = '0',
   /** 美式 */
-  American = "1",
+  American = '1',
   /** 百慕大 */
-  Bermuda = "2",
-}
+  Bermuda = '2',
+};
 
 /** 执行类型类型 */
-export enum StrikeType {
+export enum StrikeTypeType {
   /** 自身对冲 */
-  Hedge = "0",
+  Hedge = '0',
   /** 匹配执行 */
-  Match = "1",
-}
+  Match = '1',
+};
 
 /** 中金所期权放弃执行申请类型类型 */
-export enum ApplyType {
+export enum ApplyTypeType {
   /** 不执行数量 */
-  NotStrikeNum = "4",
-}
+  NotStrikeNum = '4',
+};
 
 /** 放弃执行申请数据来源类型 */
 export enum GiveUpDataSourceType {
   /** 系统生成 */
-  Gen = "0",
+  Gen = '0',
   /** 手工添加 */
-  Hand = "1",
-}
+  Hand = '1',
+};
 
 /** 执行结果类型 */
 export enum ExecResultType {
   /** 没有执行 */
-  NoExec = "n",
+  NoExec = 'n',
   /** 已经取消 */
-  Canceled = "c",
+  Canceled = 'c',
   /** 执行成功 */
-  OK = "0",
+  OK = '0',
   /** 期权持仓不够 */
-  NoPosition = "1",
+  NoPosition = '1',
   /** 资金不够 */
-  NoDeposit = "2",
+  NoDeposit = '2',
   /** 会员不存在 */
-  NoParticipant = "3",
+  NoParticipant = '3',
   /** 客户不存在 */
-  NoClient = "4",
+  NoClient = '4',
   /** 合约不存在 */
-  NoInstrument = "6",
+  NoInstrument = '6',
   /** 没有执行权限 */
-  NoRight = "7",
+  NoRight = '7',
   /** 不合理的数量 */
-  InvalidVolume = "8",
+  InvalidVolume = '8',
   /** 没有足够的历史成交 */
-  NoEnoughHistoryTrade = "9",
+  NoEnoughHistoryTrade = '9',
   /** 未知 */
-  Unknown = "a",
-}
+  Unknown = 'a',
+};
 
 /** 组合类型类型 */
-export enum CombinationType {
+export enum CombinationTypeType {
   /** 期货组合 */
-  Future = "0",
+  Future = '0',
   /** 垂直价差BUL */
-  BUL = "1",
+  BUL = '1',
   /** 垂直价差BER */
-  BER = "2",
+  BER = '2',
   /** 跨式组合 */
-  STD = "3",
+  STD = '3',
   /** 宽跨式组合 */
-  STG = "4",
+  STG = '4',
   /** 备兑组合 */
-  PRT = "5",
+  PRT = '5',
   /** 时间价差组合 */
-  CAS = "6",
+  CAS = '6',
   /** 期权对锁组合 */
-  OPL = "7",
+  OPL = '7',
   /** 买备兑组合 */
-  BFO = "8",
+  BFO = '8',
   /** 买入期权垂直价差组合 */
-  BLS = "9",
+  BLS = '9',
   /** 卖出期权垂直价差组合 */
-  BES = "a",
-}
+  BES = 'a',
+};
 
 /** 组合类型类型 */
-export enum DceCombinationType {
+export enum DceCombinationTypeType {
   /** 期货对锁组合 */
-  SPL = "0",
+  SPL = '0',
   /** 期权对锁组合 */
-  OPL = "1",
+  OPL = '1',
   /** 期货跨期组合 */
-  SP = "2",
+  SP = '2',
   /** 期货跨品种组合 */
-  SPC = "3",
+  SPC = '3',
   /** 买入期权垂直价差组合 */
-  BLS = "4",
+  BLS = '4',
   /** 卖出期权垂直价差组合 */
-  BES = "5",
+  BES = '5',
   /** 期权日历价差组合 */
-  CAS = "6",
+  CAS = '6',
   /** 期权跨式组合 */
-  STD = "7",
+  STD = '7',
   /** 期权宽跨式组合 */
-  STG = "8",
+  STG = '8',
   /** 买入期货期权组合 */
-  BFO = "9",
+  BFO = '9',
   /** 卖出期货期权组合 */
-  SFO = "a",
-}
+  SFO = 'a',
+};
 
 /** 期权权利金价格类型类型 */
-export enum OptionRoyaltyPriceType {
+export enum OptionRoyaltyPriceTypeType {
   /** 昨结算价 */
-  PreSettlementPrice = "1",
+  PreSettlementPrice = '1',
   /** 开仓价 */
-  OpenPrice = "4",
+  OpenPrice = '4',
   /** 最新价与昨结算价较大值 */
-  MaxPreSettlementPrice = "5",
-}
+  MaxPreSettlementPrice = '5',
+};
 
 /** 权益算法类型 */
 export enum BalanceAlgorithmType {
   /** 不计算期权市值盈亏 */
-  Default = "1",
+  Default = '1',
   /** 计算期权市值亏损 */
-  IncludeOptValLost = "2",
-}
+  IncludeOptValLost = '2',
+};
 
 /** 执行类型类型 */
-export enum ActionType {
+export enum ActionTypeType {
   /** 执行 */
-  Exec = "1",
+  Exec = '1',
   /** 放弃 */
-  Abandon = "2",
-}
+  Abandon = '2',
+};
 
 /** 询价状态类型 */
 export enum ForQuoteStatusType {
   /** 已经提交 */
-  Submitted = "a",
+  Submitted = 'a',
   /** 已经接受 */
-  Accepted = "b",
+  Accepted = 'b',
   /** 已经被拒绝 */
-  Rejected = "c",
-}
+  Rejected = 'c',
+};
 
 /** 取值方式类型 */
 export enum ValueMethodType {
   /** 按绝对值 */
-  Absolute = "0",
+  Absolute = '0',
   /** 按比率 */
-  Ratio = "1",
-}
+  Ratio = '1',
+};
 
 /** 期权行权后是否保留期货头寸的标记类型 */
 export enum ExecOrderPositionFlagType {
   /** 保留 */
-  Reserve = "0",
+  Reserve = '0',
   /** 不保留 */
-  UnReserve = "1",
-}
+  UnReserve = '1',
+};
 
 /** 期权行权后生成的头寸是否自动平仓类型 */
 export enum ExecOrderCloseFlagType {
   /** 自动平仓 */
-  AutoClose = "0",
+  AutoClose = '0',
   /** 免于自动平仓 */
-  NotToClose = "1",
-}
+  NotToClose = '1',
+};
 
 /** 产品类型类型 */
-export enum ProductType {
+export enum ProductTypeType {
   /** 期货 */
-  Futures = "1",
+  Futures = '1',
   /** 期权 */
-  Options = "2",
-}
-
-/** 郑商所结算文件名类型 */
-export enum CZCEUploadFileNameType {
-  /** ^\d{8}_zz_\d{4} */
-  O = "O",
-  /** ^\d{8}成交表 */
-  T = "T",
-  /** ^\d{8}单腿持仓表new */
-  P = "P",
-  /** ^\d{8}非平仓了结表 */
-  N = "N",
-  /** ^\d{8}平仓表 */
-  L = "L",
-  /** ^\d{8}资金表 */
-  F = "F",
-  /** ^\d{8}组合持仓表 */
-  C = "C",
-  /** ^\d{8}保证金参数表 */
-  M = "M",
-}
-
-/** 大商所结算文件名类型 */
-export enum DCEUploadFileNameType {
-  /** ^\d{8}_dl_\d{3} */
-  O = "O",
-  /** ^\d{8}_成交表 */
-  T = "T",
-  /** ^\d{8}_持仓表 */
-  P = "P",
-  /** ^\d{8}_资金结算表 */
-  F = "F",
-  /** ^\d{8}_优惠组合持仓明细表 */
-  C = "C",
-  /** ^\d{8}_持仓明细表 */
-  D = "D",
-  /** ^\d{8}_保证金参数表 */
-  M = "M",
-  /** ^\d{8}_期权执行表 */
-  S = "S",
-}
-
-/** 上期所结算文件名类型 */
-export enum SHFEUploadFileNameType {
-  /** ^\d{4}_\d{8}_\d{8}_DailyFundChg */
-  O = "O",
-  /** ^\d{4}_\d{8}_\d{8}_Trade */
-  T = "T",
-  /** ^\d{4}_\d{8}_\d{8}_SettlementDetail */
-  P = "P",
-  /** ^\d{4}_\d{8}_\d{8}_Capital */
-  F = "F",
-}
-
-/** 中金所结算文件名类型 */
-export enum CFFEXUploadFileNameType {
-  /** ^\d{4}_SG\d{1}_\d{8}_\d{1}_Trade */
-  T = "T",
-  /** ^\d{4}_SG\d{1}_\d{8}_\d{1}_SettlementDetail */
-  P = "P",
-  /** ^\d{4}_SG\d{1}_\d{8}_\d{1}_Capital */
-  F = "F",
-  /** ^\d{4}_SG\d{1}_\d{8}_\d{1}_OptionExec */
-  S = "S",
-}
+  Options = '2',
+};
 
 /** 组合指令方向类型 */
 export enum CombDirectionType {
   /** 申请组合 */
-  Comb = "0",
+  Comb = '0',
   /** 申请拆分 */
-  UnComb = "1",
+  UnComb = '1',
   /** 操作员删组合单 */
-  DelComb = "2",
-}
+  DelComb = '2',
+};
 
 /** 行权偏移类型类型 */
-export enum StrikeOffsetType {
+export enum StrikeOffsetTypeType {
   /** 实值额 */
-  RealValue = "1",
+  RealValue = '1',
   /** 盈利额 */
-  ProfitValue = "2",
+  ProfitValue = '2',
   /** 实值比例 */
-  RealRatio = "3",
+  RealRatio = '3',
   /** 盈利比例 */
-  ProfitRatio = "4",
-}
+  ProfitRatio = '4',
+};
 
 /** 预约开户状态类型 */
 export enum ReserveOpenAccStasType {
   /** 等待处理中 */
-  Processing = "0",
+  Processing = '0',
   /** 已撤销 */
-  Cancelled = "1",
+  Cancelled = '1',
   /** 已开户 */
-  Opened = "2",
+  Opened = '2',
   /** 无效请求 */
-  Invalid = "3",
-}
+  Invalid = '3',
+};
 
 /** 弱密码来源类型 */
 export enum WeakPasswordSourceType {
   /** 弱密码库 */
-  Lib = "1",
+  Lib = '1',
   /** 手工录入 */
-  Manual = "2",
-}
+  Manual = '2',
+};
 
 /** 期权行权的头寸是否自对冲类型 */
 export enum OptSelfCloseFlagType {
   /** 自对冲期权仓位 */
-  CloseSelfOptionPosition = "1",
+  CloseSelfOptionPosition = '1',
   /** 保留期权仓位 */
-  ReserveOptionPosition = "2",
+  ReserveOptionPosition = '2',
   /** 自对冲卖方履约后的期货仓位 */
-  SellCloseSelfFuturePosition = "3",
+  SellCloseSelfFuturePosition = '3',
   /** 保留卖方履约后的期货仓位 */
-  ReserveFuturePosition = "4",
-}
+  ReserveFuturePosition = '4',
+};
 
 /** 业务类型类型 */
-export enum BizType {
+export enum BizTypeType {
   /** 期货 */
-  Future = "1",
+  Future = '1',
   /** 证券 */
-  Stock = "2",
-}
+  Stock = '2',
+};
 
 /** 用户App类型类型 */
-export enum AppType {
+export enum AppTypeType {
   /** 直连的投资者 */
-  Investor = "1",
+  Investor = '1',
   /** 为每个投资者都创建连接的中继 */
-  InvestorRelay = "2",
+  InvestorRelay = '2',
   /** 所有投资者共享一个操作员连接的中继 */
-  OperatorRelay = "3",
+  OperatorRelay = '3',
   /** 未知 */
-  UnKnown = "4",
-}
+  UnKnown = '4',
+};
 
 /** 应答类型类型 */
 export enum ResponseValueType {
   /** 检查成功 */
-  Right = "0",
+  Right = '0',
   /** 检查失败 */
-  Refuse = "1",
-}
+  Refuse = '1',
+};
 
 /** OTC成交类型类型 */
-export enum OTCTradeType {
+export enum OTCTradeTypeType {
   /** 大宗交易 */
-  Block = "0",
+  Block = '0',
   /** 期转现 */
-  EFP = "1",
-}
+  EFP = '1',
+};
 
 /** 期现风险匹配方式类型 */
-export enum MatchType {
+export enum MatchTypeType {
   /** 基点价值 */
-  DV01 = "1",
+  DV01 = '1',
   /** 面值 */
-  ParValue = "2",
-}
+  ParValue = '2',
+};
 
 /** 用户终端认证方式类型 */
-export enum AuthType {
+export enum AuthTypeType {
   /** 白名单校验 */
-  WHITE = "0",
+  WHITE = '0',
   /** 黑名单校验 */
-  BLACK = "1",
-}
+  BLACK = '1',
+};
 
 /** 合约分类方式类型 */
-export enum ClassType {
+export enum ClassTypeType {
   /** 所有合约 */
-  ALL = "0",
+  ALL = '0',
   /** 期货、即期、期转现、Tas、金属指数合约 */
-  FUTURE = "1",
+  FUTURE = '1',
   /** 期货、现货期权合约 */
-  OPTION = "2",
+  OPTION = '2',
   /** 组合合约 */
-  COMB = "3",
-}
+  COMB = '3',
+};
 
 /** 合约交易状态分类方式类型 */
-export enum TradingType {
+export enum TradingTypeType {
   /** 所有状态 */
-  ALL = "0",
+  ALL = '0',
   /** 交易 */
-  TRADE = "1",
+  TRADE = '1',
   /** 非交易 */
-  UNTRADE = "2",
-}
+  UNTRADE = '2',
+};
 
 /** 产品状态类型 */
 export enum ProductStatusType {
   /** 可交易 */
-  tradeable = "1",
+  tradeable = '1',
   /** 不可交易 */
-  untradeable = "2",
-}
+  untradeable = '2',
+};
 
 /** 追平状态类型 */
 export enum SyncDeltaStatusType {
   /** 交易可读 */
-  Readable = "1",
+  Readable = '1',
   /** 交易在读 */
-  Reading = "2",
+  Reading = '2',
   /** 交易读取完成 */
-  Readend = "3",
+  Readend = '3',
   /** 追平失败 交易本地状态结算不存在 */
-  OptErr = "e",
-}
+  OptErr = 'e',
+};
 
 /** 操作标志类型 */
 export enum ActionDirectionType {
   /** 增加 */
-  Add = "1",
+  Add = '1',
   /** 删除 */
-  Del = "2",
+  Del = '2',
   /** 更新 */
-  Upd = "3",
-}
+  Upd = '3',
+};
 
 /** 撤单时选择席位算法类型 */
 export enum OrderCancelAlgType {
   /** 轮询席位撤单 */
-  Balance = "1",
+  Balance = '1',
   /** 优先原报单席位撤单 */
-  OrigFirst = "2",
-}
+  OrigFirst = '2',
+};
 
 /** 开仓量限制粒度类型 */
 export enum OpenLimitControlLevelType {
   /** 不控制 */
-  None = "0",
+  None = '0',
   /** 产品级别 */
-  Product = "1",
+  Product = '1',
   /** 合约级别 */
-  Inst = "2",
-}
+  Inst = '2',
+};
 
 /** 报单频率控制粒度类型 */
 export enum OrderFreqControlLevelType {
   /** 不控制 */
-  None = "0",
+  None = '0',
   /** 产品级别 */
-  Product = "1",
+  Product = '1',
   /** 合约级别 */
-  Inst = "2",
-}
+  Inst = '2',
+};
 
-/** 枚举bool类型类型 */
-export enum EnumBoolType {
-  /** false */
-  False = "0",
-  /** true */
-  True = "1",
-}
+/** 期货合约阶段标识类型 */
+export enum TimeRangeType {
+  /** 一般月份 */
+  USUAL = '1',
+  /** 交割月前一个月上半月 */
+  FNSP = '2',
+  /** 交割月前一个月下半月 */
+  BNSP = '3',
+  /** 交割月份 */
+  SPOT = '4',
+};
+
+/** 新型组保算法类型 */
+export enum PortfolioType {
+  /** 不使用新型组保算法 */
+  None = '0',
+  /** SPBM算法 */
+  SPBM = '1',
+};
+
+/** 可提参数代码类型 */
+export enum WithDrawParamIDType {
+  /** 权利金收支是否可提 1 代表可提 0 不可提 */
+  CashIn = 'C',
+};
+
+/** 投资者交易权限类型 */
+export enum InvstTradingRightType {
+  /** 只能平仓 */
+  CloseOnly = '1',
+  /** 不能交易 */
+  Forbidden = '2',
+};

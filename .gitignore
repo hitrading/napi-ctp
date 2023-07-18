@@ -1,5 +1,6 @@
 node_modules/
 build/
+dist/
 flow/
 flowMd/
 .vscode/c_cpp_properties.json

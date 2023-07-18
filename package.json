@@ -15,9 +15,10 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "build": "node-gyp-build && tsc",
-    "install": "node-gyp-build && tsc",
+    "build": "node-gyp-build && npm run create-enum && tsc",
+    "install": "node-gyp-build && npm run create-enum && tsc",
     "prebuild": "prebuildify --napi",
+    "create-enum": "node scripts/enumCreate.js",
     "test": "node test.js"
   },
   "repository": {
@@ -40,6 +41,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "json5": "^2.2.3",
     "node-gyp-build": "^4.5.0"
   }
 }
