@@ -9,8 +9,8 @@
  * https://github.com/shixiongfei/napi-ctp
  */
 
-export * from "./enum";
-import type { Market, Trader } from "./types";
+export * from "./interfaces/enum";
+import type { Market, Trader } from "./interfaces/types";
 
 
 /**
