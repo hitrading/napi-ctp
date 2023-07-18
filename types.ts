@@ -10,7 +10,7 @@
  */
 
 /** 消息事件回调接口 */
-type CallbackFunction = (message?: number | object) => void;
+type CallbackFunction = (message: any /* number | object */) => void;
 
 /** 行情消息事件 */
 type MarketDataEvent =
