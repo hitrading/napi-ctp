@@ -65,8 +65,8 @@ td
   td.reqAuthenticate({
     BrokerID: "4040",
     UserID: "369863",
-    AuthCode: "",
-    AppID: ""
+    AuthCode: "H0UH89TNY3RDOHNB",
+    AppID: "client_ng_2.0.0"
   });
 })
 .on('rsp-authenticate', (...args) => {
@@ -74,7 +74,7 @@ td
   td.reqUserLogin({
     BrokerID: "4040",
     UserID: "369863",
-    Password: "****"
+    Password: "iguzhi-1288"
   });
 })
 .on('front-disconnected', (...args) => {
@@ -85,4 +85,10 @@ td
 })
 .on('rsp-user-login', (...args) => {
   console.log('td rsp-user-login', ...args);
+  td.reqSettlementInfoConfirm({
+    BrokerID: "4040",
+    InvestorID: "369863",
+    ConfirmDate: data.tradingDay,
+    ConfirmTime: data.loginTime
+  })
 });

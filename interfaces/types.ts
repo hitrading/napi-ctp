@@ -9,8 +9,17 @@
  * https://github.com/shixiongfei/napi-ctp
  */
 
+export type CallbackMessage = any /* number | object */;
+
+export type CallbackOptions = {
+  isLast?: boolean;
+};
+
 /** 消息事件回调接口 */
-type CallbackFunction = (message: any /* number | object */) => void;
+export type CallbackFunction = (
+  message: CallbackMessage,
+  options: CallbackOptions
+) => void;
 
 /** 行情消息事件 */
 type MarketDataEvent =

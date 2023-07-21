@@ -31,8 +31,12 @@ typedef struct Constructors {
   napi_ref trader;
 } Constructors;
 
+enum { Undefined = -1, False, True };
+
 typedef struct Message {
-  int event;
+  short event;
+  short isLast;
+  int requestId;
   uintptr_t data;
 } Message;
 
@@ -51,9 +55,9 @@ Constructors *getConstructors(napi_env env);
 napi_status defineClass(napi_env env, const char *name, napi_callback constructor, size_t propertyCount, const napi_property_descriptor *properties, napi_ref *result);
 napi_value createInstance(napi_env env, napi_callback_info info, napi_ref constructor, size_t argc);
 
-napi_status checkIsStringArray(napi_env env, napi_value value, bool *result);
-napi_status checkIsObject(napi_env env, napi_value value, bool *result);
-napi_status checkValueTypes(napi_env env, size_t argc, const napi_value *argv, const napi_valuetype *types, bool *result);
+napi_status checkIsStringArray(napi_env env, napi_value value);
+napi_status checkIsObject(napi_env env, napi_value value);
+napi_status checkValueTypes(napi_env env, size_t argc, const napi_value *argv, const napi_valuetype *types);
 
 napi_status objectSetString(napi_env env, napi_value object, const char *name, const char *string);
 napi_status objectSetInt32(napi_env env, napi_value object, const char *name, int32_t number);
@@ -61,6 +65,7 @@ napi_status objectSetUint32(napi_env env, napi_value object, const char *name, u
 napi_status objectSetInt64(napi_env env, napi_value object, const char *name, int64_t number);
 napi_status objectSetDouble(napi_env env, napi_value object, const char *name, double number);
 napi_status objectSetChar(napi_env env, napi_value object, const char *name, char ch);
+napi_status objectSetBoolean(napi_env env, napi_value object, const char *name, bool boolean);
 
 napi_status objectGetString(napi_env env, napi_value object, const char *name, char *buf, size_t bufsize, size_t *length);
 napi_status objectGetInt32(napi_env env, napi_value object, const char *name, int32_t *number);
@@ -68,6 +73,7 @@ napi_status objectGetUint32(napi_env env, napi_value object, const char *name, u
 napi_status objectGetInt64(napi_env env, napi_value object, const char *name, int64_t *number);
 napi_status objectGetDouble(napi_env env, napi_value object, const char *name, double *number);
 napi_status objectGetChar(napi_env env, napi_value object, const char *name, char *ch);
+napi_status objectGetBoolean(napi_env env, napi_value object, const char *name, bool *boolean);
 
 #define SetObjectString(env, object, record, name)                             \
   objectSetString(env, object, #name, (const char *)record->name)
@@ -87,6 +93,9 @@ napi_status objectGetChar(napi_env env, napi_value object, const char *name, cha
 #define SetObjectChar(env, object, record, name)                               \
   objectSetChar(env, object, #name, record->name)
 
+#define SetObjectBoolean(env, object, record, name)                            \
+  objectSetBoolean(env, object, #name, record->name)
+
 #define GetObjectString(env, object, record, name)                             \
   objectGetString(env, object, #name, record.name, sizeof(record.name), nullptr)
 
@@ -104,6 +113,9 @@ napi_status objectGetChar(napi_env env, napi_value object, const char *name, cha
 
 #define GetObjectChar(env, object, record, name)                               \
   objectGetChar(env, object, #name, &record.name)
+
+#define GetObjectBoolean(env, object, record, name)                            \
+  objectGetBoolean(env, object, #name, &record.name)
 
 template <typename T> static inline uintptr_t copyData(T *data) {
   T *p = (T *)malloc(sizeof(T));
