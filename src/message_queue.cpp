@@ -23,6 +23,7 @@ MessageQueue::~MessageQueue() {
 
 void MessageQueue::push(short event, uintptr_t data, int requestId, short isLast) {
   Message *message = (Message *)malloc(sizeof(Message));
+  assert(message != nullptr);
 
   message->event = event;
   message->isLast = isLast;
@@ -64,4 +65,11 @@ int MessageQueue::pop(Message **message, unsigned int millisec) {
   uv_mutex_unlock(&_mutex);
 
   return QUEUE_SUCCESS;
+}
+
+void MessageQueue::done(Message *message, bool isFreeData) {
+  if (isFreeData)
+    freeData(message->data);
+
+  free(message);
 }

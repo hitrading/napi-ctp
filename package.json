@@ -19,7 +19,7 @@
     "install": "node-gyp-build && npm run create-enum && tsc",
     "prebuild": "prebuildify --napi",
     "create-enum": "node scripts/enumCreate.js",
-    "test": "node test.js"
+    "test": "node samples/test.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/shixiongfei/napi-ctp#readme",
   "devDependencies": {
+    "@types/node": "^20.4.5",
     "node-gyp": "^9.3.0",
     "prebuildify": "^5.0.1",
     "typescript": "^5.1.6"
