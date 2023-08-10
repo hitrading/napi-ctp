@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "build": "node-gyp-build && npm run create-enum && tsc",
-    "install": "build",
+    "install": "npm run build",
     "prebuild": "prebuildify --napi",
     "create-enum": "node scripts/enumCreate.js",
     "test": "node samples/test.js"
