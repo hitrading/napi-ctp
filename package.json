@@ -1,6 +1,6 @@
 {
   "name": "napi-ctp",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "description": "Node API for CTP",
   "main": "index.js",
   "types": "index.d.ts",
@@ -10,13 +10,15 @@
     "index.js",
     "index.d.ts",
     "types.ts",
+    "types.js",
+    "types.d.ts",
     "enum.ts",
     "binding.gyp",
     "tsconfig.json"
   ],
   "scripts": {
     "build": "node-gyp-build && npm run create-enum && tsc",
-    "install": "node-gyp-build && npm run create-enum && tsc",
+    "install": "build",
     "prebuild": "prebuildify --napi",
     "create-enum": "node scripts/enumCreate.js",
     "test": "node samples/test.js"
