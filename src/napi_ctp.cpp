@@ -19,14 +19,39 @@
 #include <iconv.h>
 #endif
 
+void checkStatus(napi_env env, napi_status status, const char *file, int line) {
+  if (status == napi_ok)
+    return;
+
+  napi_value exception;
+
+  assert(napi_get_and_clear_last_exception(env, &exception) == napi_ok);
+  assert(napi_fatal_exception(env, exception) == napi_ok);
+}
+
+#ifdef _MSC_VER
+#define atom_incr(p) InterlockedIncrement((LONG volatile *)(p))
+#define atom_cas(p, o, n) ((o) == InterlockedCompareExchange((p), (n), (o)))
+#else
+#define atom_incr(p) __sync_add_and_fetch((p), 1)
+#define atom_cas(p, o, n) __sync_bool_compare_and_swap((p), (o), (n))
+#endif
+
+#define atom_get(p, v)                                                         \
+  do {                                                                         \
+    *(v) = *(p);                                                               \
+  } while (!atom_cas((p), *(v), *(v)))
+
 static long volatile sequenceLastId = 0;
 
-int sequenceId() {
-#ifdef _MSC_VER
-  return (int)InterlockedIncrement(&sequenceLastId);
-#else
-  return (int)__sync_add_and_fetch(&sequenceLastId, 1);
-#endif
+int nextSequenceId() {
+  return (int)atom_incr(&sequenceLastId);
+}
+
+int currentSequenceId() {
+  long sequenceId;
+  atom_get(&sequenceLastId, &sequenceId);
+  return (int)sequenceId;
 }
 
 Constructors *getConstructors(napi_env env) {

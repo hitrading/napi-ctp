@@ -12,5 +12,5 @@
     "skipLibCheck": true,
     "declaration": true
   },
-  "files": ["interfaces/enum.ts", "interfaces/types.ts"]
+  "files": ["interfaces/enum.ts"]
 }

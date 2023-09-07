@@ -12,6 +12,7 @@
 const {
   createMarketData,
   createTrader,
+  getLastRequestId
 } = require("..");
 const fs = require("node:fs");
 
@@ -29,6 +30,7 @@ console.log(td.getApiVersion());
 console.log(md.getApiVersion());
 console.log(md.getTradingDay());
 console.log(td.getTradingDay());
+console.log(getLastRequestId());
 
 md.reqUserLogout({
   BrokerID: "4040",

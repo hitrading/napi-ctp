@@ -1,7 +1,8 @@
 {
   "name": "napi-ctp",
-  "version": "0.1.9",
+  "version": "0.1.13",
   "description": "Node API for CTP",
+  "private": false,
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -10,33 +11,20 @@
     "index.js",
     "index.d.ts",
     "types.ts",
-    "types.js",
-    "types.d.ts",
     "enum.ts",
     "binding.gyp",
     "tsconfig.json"
   ],
   "scripts": {
-    "build": "node-gyp-build && npm run create-enum && tsc",
+    "clean": "rm -rf dist build logs prebuilds",
+    "clean:all": "npm run clean && rm -rf node_modules",
+    "build": "node-gyp clean && node-gyp-build && npm run create-enum && tsc",
+    "build:debug": "node-gyp clean && node-gyp configure && node-gyp build --debug && tsc",
     "install": "npm run build",
     "prebuild": "prebuildify --napi",
     "create-enum": "node scripts/enumCreate.js",
     "test": "node samples/test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shixiongfei/napi-ctp.git"
-  },
-  "keywords": [
-    "ctp",
-    "nodectp"
-  ],
-  "author": "shixiongfei",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/shixiongfei/napi-ctp/issues"
-  },
-  "homepage": "https://github.com/shixiongfei/napi-ctp#readme",
   "devDependencies": {
     "@types/node": "^20.4.5",
     "node-gyp": "^9.3.0",

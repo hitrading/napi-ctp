@@ -42,14 +42,15 @@ typedef struct Message {
 
 #define arraysize(a) ((int)(sizeof(a) / sizeof(*a)))
 
-#define CHECK_RESULT(__expression__, __result__) assert(__expression__ == __result__)
-#define CHECK(__expression__) CHECK_RESULT(__expression__, napi_ok)
+void checkStatus(napi_env env, napi_status status, const char *file, int line);
+#define CHECK(__expression__) checkStatus(env, __expression__, __FILE__, __LINE__)
 
 #define DECLARE_NAPI_METHOD_(name, method)                                     \
   { name, 0, method, 0, 0, 0, napi_default, 0 }
 #define DECLARE_NAPI_METHOD(method) DECLARE_NAPI_METHOD_(#method, method)
 
-int sequenceId();
+int nextSequenceId();
+int currentSequenceId();
 
 Constructors *getConstructors(napi_env env);
 napi_status defineClass(napi_env env, const char *name, napi_callback constructor, size_t propertyCount, const napi_property_descriptor *properties, napi_ref *result);
@@ -122,6 +123,9 @@ napi_status objectGetBoolean(napi_env env, napi_value object, const char *name, 
   objectGetBoolean(env, object, #name, &record.name)
 
 template <typename T> static inline uintptr_t copyData(T *data) {
+  if (!data)
+    return 0;
+
   T *p = (T *)malloc(sizeof(T));
 
   if (!p)

@@ -1,14 +1,3 @@
-/*
- * index.d.ts
- *
- * Copyright (c) 2022, 2023 Xiongfei Shi
- *
- * Author: Xiongfei Shi <xiongfei.shi(a)icloud.com>
- * License: Apache-2.0
- *
- * https://github.com/shixiongfei/napi-ctp
- */
-
 export * from "./interfaces/enum";
 import type { Market, Trader } from "./interfaces/types";
 
@@ -34,3 +23,9 @@ export declare function createTrader(
   flowPath: string,
   frontAddr: string
 ): Trader;
+
+/**
+ * 获取最后请求序列ID
+ * @returns 序列ID
+ */
+ export declare function getLastRequestId(): number;

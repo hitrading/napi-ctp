@@ -126,10 +126,16 @@ static napi_value callRequestFunc(napi_env env, napi_callback_info info, const s
   size_t argc = 1;
   int result;
   napi_value object, jsthis, retval;
+  napi_valuetype valuetype;
   MarketData *marketData;
 
   CHECK(napi_get_cb_info(env, info, &argc, &object, &jsthis, nullptr));
   CHECK(napi_unwrap(env, jsthis, (void **)&marketData));
+
+  CHECK(napi_typeof(env, object, &valuetype));
+
+  if (valuetype == napi_undefined)
+    CHECK(napi_create_object(env, &object));
 
   CHECK(checkIsObject(env, object));
 
@@ -158,7 +164,7 @@ static napi_value reqUserLogin(napi_env env, napi_callback_info info) {
     CHECK(GetObjectInt32(env, object, req, ClientIPPort));
     CHECK(GetObjectString(env, object, req, ClientIPAddress));
 
-    return marketData->api->ReqUserLogin(&req, sequenceId());
+    return marketData->api->ReqUserLogin(&req, nextSequenceId());
   });
 }
 
@@ -171,7 +177,7 @@ static napi_value reqUserLogout(napi_env env, napi_callback_info info) {
     CHECK(GetObjectString(env, object, req, BrokerID));
     CHECK(GetObjectString(env, object, req, UserID));
 
-    return marketData->api->ReqUserLogout(&req, sequenceId());
+    return marketData->api->ReqUserLogout(&req, nextSequenceId());
   });
 }
 
@@ -186,6 +192,7 @@ static bool processMessage(MarketData *marketData, const Message *message) {
   auto iter = marketData->tsfns.find(eventName);
 
   if (iter != marketData->tsfns.end()) {
+    napi_env env = marketData->env;
     napi_threadsafe_function tsfn = iter->second;
     CHECK(napi_call_threadsafe_function(tsfn, (void *)message, napi_tsfn_blocking));
   }
