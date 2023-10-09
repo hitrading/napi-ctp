@@ -64,39 +64,39 @@ md
 });
 
 
-// td
-// .on('front-connected', (...args) => {
-//   console.log('td front-connected', ...args);
-//   td.reqAuthenticate({
-//     BrokerID: "4040",
-//     UserID: "369863",
-//     AuthCode: "H0UH89TNY3RDOHNB",
-//     AppID: "client_ng_2.0.0"
-//   });
-// })
-// .on('rsp-authenticate', (...args) => {
-//   console.log('td rsp-authenticate', ...args);
-//   td.reqUserLogin({
-//     BrokerID: "4040",
-//     UserID: "369863",
-//     Password: "iguzhi-1288"
-//   });
-// })
-// .on('front-disconnected', (...args) => {
-//   console.log('td front-disconnected', ...args);
-// })
-// .on('rsp-error', (...args) => {
-//   console.log('td rsp-error', ...args);
-// })
-// .on('rsp-user-login', (...args) => {
-//   console.log('td rsp-user-login', ...args);
-//   td.reqSettlementInfoConfirm({
-//     BrokerID: "4040",
-//     InvestorID: "369863",
-//     ConfirmDate: data.tradingDay,
-//     ConfirmTime: data.loginTime
-//   })
-// })
-// .on('quit', (...args) => {
-//   console.log("Trader Quit:", ...args);
-// });
+td
+.on('front-connected', (...args) => {
+  console.log('td front-connected', ...args);
+  td.reqAuthenticate({
+    BrokerID: "4040",
+    UserID: "369863",
+    AuthCode: "H0UH89TNY3RDOHNB",
+    AppID: "client_ng_2.0.0"
+  });
+})
+.on('rsp-authenticate', (...args) => {
+  console.log('td rsp-authenticate', ...args);
+  td.reqUserLogin({
+    BrokerID: "4040",
+    UserID: "369863",
+    Password: "iguzhi-1288"
+  });
+})
+.on('front-disconnected', (...args) => {
+  console.log('td front-disconnected', ...args);
+})
+.on('rsp-error', (...args) => {
+  console.log('td rsp-error', ...args);
+})
+.on('rsp-user-login', (...args) => {
+  console.log('td rsp-user-login', ...args);
+  td.reqSettlementInfoConfirm({
+    BrokerID: "4040",
+    InvestorID: "369863",
+    ConfirmDate: data.tradingDay,
+    ConfirmTime: data.loginTime
+  })
+})
+.on('quit', (...args) => {
+  console.log("Trader Quit:", ...args);
+});
