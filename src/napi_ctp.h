@@ -16,6 +16,7 @@
 #include "ThostFtdcTraderApi.h"
 #include <assert.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <node_api.h>
 
 #ifdef _MSC_VER
@@ -37,10 +38,13 @@ typedef struct Message {
   short event;
   short isLast;
   int requestId;
+  int64_t timestamp;
   uintptr_t data;
 } Message;
 
 #define arraysize(a) ((int)(sizeof(a) / sizeof(*a)))
+
+double hrtime(long *sec, long *usec);
 
 void checkStatus(napi_env env, napi_status status, const char *file, int line);
 #define CHECK(__expression__) checkStatus(env, __expression__, __FILE__, __LINE__)
