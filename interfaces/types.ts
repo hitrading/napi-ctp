@@ -2558,6 +2558,11 @@ export interface Market {
    * @param func 回调函数
    */
   on(event: MarketDataEvent, func: CallbackFunction): Market;
+
+  /**
+   * 关闭行情对象
+   */
+   close(): void;
 }
 
 /** 交易对象 */
@@ -3109,4 +3114,9 @@ export interface Trader {
    * @param func 回调函数
    */
   on(event: TraderEvent, func: CallbackFunction): Trader;
+
+  /**
+   * 关闭交易对象
+   */
+   close(): void;
 }
